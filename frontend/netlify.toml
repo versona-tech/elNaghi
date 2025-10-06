@@ -1,9 +1,10 @@
 # Netlify Configuration - محمد الناغي 2026
-# موقع الحملة الانتخابية بتصميم عصري
+# موقع الحملة الانتخابية بتصميم عصري + Backend Functions
 
 [build]
   command = "npm run build"
   publish = ".next"
+  functions = "netlify/functions"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -11,10 +12,16 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
-  # ⚠️ غيّر هذا الرابط برابط Backend الخاص بك
-  NEXT_PUBLIC_API_URL = "https://your-backend-url.com/api"
+  # API الآن داخلي عبر Netlify Functions
+  NEXT_PUBLIC_API_URL = "/.netlify/functions"
   NEXT_PUBLIC_SITE_NAME = "محمد الناغي"
   NEXT_PUBLIC_SITE_DESCRIPTION = "موقع المرشح محمد الناغي - دائرة منية النصر والجمالية - الدقهلية"
+
+# API Routes redirect to Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
 
 # إعادة توجيه للصفحات الديناميكية
 [[redirects]]
