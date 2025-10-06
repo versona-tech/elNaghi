@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { FaIdCard, FaBolt, FaFileAlt, FaBuilding, FaWater, FaGraduationCap, FaHospital, FaMoneyBill } from 'react-icons/fa';
 
 const ServicesPage = () => {
@@ -142,9 +143,9 @@ const ServicesPage = () => {
             <p className="text-xl text-primary-100 mb-6">
               إذا واجهت أي صعوبة في إنجاز معاملاتك الحكومية، لا تتردد في التواصل معنا
             </p>
-            <a href="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
+            <Link href="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
               تواصل معنا الآن
-            </a>
+            </Link>
           </div>
         </div>
       </section>
