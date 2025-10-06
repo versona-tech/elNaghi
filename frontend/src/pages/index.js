@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { newsAPI, eventsAPI, programAPI } from '@/lib/api';
 import { mockNews, mockEvents, mockProgram } from '@/lib/mockData';
+import SEO from '@/components/SEO';
 
 export default function Home() {
   const [news, setNews] = useState([]);
@@ -53,10 +54,11 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>محمد الناغي - دائرة منية النصر والكردي وميت سلسيل والجمالية</title>
-        <meta name="description" content="موقع المرشح محمد الناغي - دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية" />
-      </Head>
+      <SEO 
+        title="محمد الناغي - مرشح مجلس النواب | دائرة منية النصر والكردي وميت سلسيل والجمالية"
+        description="الموقع الرسمي للمرشح محمد إبراهيم علي الناغي - مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية. معاً نبني مستقبل أفضل لأبناء الدائرة."
+        image="/images/og-image.jpg"
+      />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary-900 via-primary-700 to-primary-900 text-white py-24 md:py-36 overflow-hidden">
