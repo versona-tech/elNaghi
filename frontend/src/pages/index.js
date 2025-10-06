@@ -54,8 +54,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>محمد الناغي - دائرة منية النصر والجمالية</title>
-        <meta name="description" content="موقع المرشح محمد الناغي - دائرة منية النصر والجمالية - محافظة الدقهلية" />
+        <title>محمد الناغي - دائرة منية النصر والكردي وميت سلسيل والجمالية</title>
+        <meta name="description" content="موقع المرشح محمد الناغي - دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية" />
       </Head>
 
       {/* Hero Section */}
@@ -105,7 +105,7 @@ export default function Home() {
               className="text-3xl md:text-4xl mb-4 font-bold text-gold-200"
               style={{ fontFamily: 'Tajawal, sans-serif' }}
             >
-              مرشح مجلس الشعب - دائرة منية النصر والجمالية
+              مرشح مجلس النواب - دائرة منية النصر والكردي وميت سلسيل والجمالية
             </motion.p>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -113,7 +113,7 @@ export default function Home() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-xl md:text-2xl mb-10 text-primary-100"
             >
-              دائرة منية النصر والجمالية - محافظة الدقهلية
+              دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

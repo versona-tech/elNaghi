@@ -36,7 +36,7 @@ const Navbar = () => {
             className="flex items-center gap-2"
           >
             <span className="text-cyan-300 font-semibold text-lg">📍</span>
-            <span className="font-medium text-gray-100">دائرة منية النصر والجمالية - محافظة الدقهلية</span>
+            <span className="font-medium text-gray-100">دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية</span>
           </motion.div>
           <motion.div 
             initial={{ x: 20, opacity: 0 }}
@@ -247,7 +247,7 @@ const Navbar = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  مرشح مجلس الشعب - دائرة منية النصر والجمالية
+                  مرشح مجلس النواب - دائرة منية النصر والكردي وميت سلسيل والجمالية
                 </motion.p>
               </motion.div>
             </Link>

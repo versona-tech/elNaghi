@@ -48,7 +48,7 @@ const BiographyPage = () => {
                 />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">محمد إبراهيم علي الناغي</h2>
-              <p className="text-xl text-primary-600 font-semibold">مرشح دائرة منية النصر والجمالية</p>
+              <p className="text-xl text-primary-600 font-semibold">مرشح دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
             </div>
           </div>
 

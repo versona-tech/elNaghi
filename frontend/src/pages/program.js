@@ -54,7 +54,7 @@ const ProgramPage = () => {
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">البرنامج الانتخابي</h1>
-          <p className="text-xl text-primary-100">خطة عمل شاملة لتطوير دائرة منية النصر والجمالية</p>
+          <p className="text-xl text-primary-100">خطة عمل شاملة لتطوير دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
         </div>
       </section>
 

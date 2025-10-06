@@ -46,7 +46,7 @@ const MapPage = () => {
     <>
       <Head>
         <title>الخريطة التفاعلية - محمد إبراهيم علي الناغي</title>
-        <meta name="description" content="خريطة تفاعلية لدائرة منية النصر والجمالية" />
+        <meta name="description" content="خريطة تفاعلية لدائرة منية النصر والكردي وميت سلسيل والجمالية" />
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -60,7 +60,7 @@ const MapPage = () => {
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">الخريطة التفاعلية</h1>
           <p className="text-xl text-primary-100">
-            استكشف قرى ومناطق دائرة منية النصر والجمالية
+            استكشف قرى ومناطق دائرة منية النصر والكردي وميت سلسيل والجمالية
           </p>
         </div>
       </section>
