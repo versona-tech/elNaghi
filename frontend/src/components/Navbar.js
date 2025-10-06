@@ -7,15 +7,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
+  const navigation = [
     { name: 'الرئيسية', href: '/' },
     { name: 'السيرة الذاتية', href: '/biography' },
     { name: 'البرنامج الانتخابي', href: '/program' },
     { name: 'الأخبار', href: '/news' },
     { name: 'الفعاليات', href: '/events' },
-    { name: 'اسأل النائب', href: '/contact' },
-    { name: 'الخريطة التفاعلية', href: '/map' },
     { name: 'الخدمات', href: '/services' },
+    { name: 'اسأل المرشح', href: '/contact' },
   ];
 
   return (
@@ -248,7 +247,7 @@ const Navbar = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  نائب من أجل مستقبل أفضل
+                  مرشح مجلس الشعب - دائرة منية النصر والجمالية
                 </motion.p>
               </motion.div>
             </Link>

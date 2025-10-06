@@ -30,14 +30,14 @@ const ContactPage = () => {
   return (
     <>
       <Head>
-        <title>اسأل النائب - محمد إبراهيم علي الناغي</title>
-        <meta name="description" content="تواصل مع المرشح محمد إبراهيم علي الناغي" />
+        <title>اسأل المرشح - محمد الناغي</title>
+        <meta name="description" content="تواصل مع مرشح مجلس الشعب محمد الناغي" />
       </Head>
 
       {/* Hero */}
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">اسأل النائب</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">اسأل المرشح</h1>
           <p className="text-xl text-primary-100">نحن هنا للاستماع إليك والعمل على حل مشاكلك</p>
         </div>
       </section>

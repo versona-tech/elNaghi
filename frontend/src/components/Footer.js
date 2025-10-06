@@ -21,7 +21,7 @@ const Footer = () => {
     { name: 'الخريطة التفاعلية', href: '/map' },
     { name: 'الخدمات الحكومية', href: '/services' },
     { name: 'مكتبة الوعي السياسي', href: '/awareness' },
-    { name: 'اسأل النائب', href: '/contact' },
+    { name: 'اسأل المرشح', href: '/contact' },
   ];
 
   const socialLinks = [

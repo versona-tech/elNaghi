@@ -105,7 +105,7 @@ export default function Home() {
               className="text-3xl md:text-4xl mb-4 font-bold text-gold-200"
               style={{ fontFamily: 'Tajawal, sans-serif' }}
             >
-              نائب من أجل مستقبل أفضل
+              مرشح مجلس الشعب - دائرة منية النصر والجمالية
             </motion.p>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -126,7 +126,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-gold-600 to-gold-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
               <Link href="/contact" className="group relative px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-105 text-lg">
-                اسأل النائب
+                اسأل المرشح
               </Link>
             </motion.div>
           </motion.div>
