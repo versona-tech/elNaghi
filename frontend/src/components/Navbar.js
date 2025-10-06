@@ -189,25 +189,15 @@ const Navbar = () => {
                     transition={{ delay: 0.3, type: "spring" }}
                     className="absolute inset-0 flex items-center justify-center p-2"
                   >
-                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-neon">
-                      {/* Profile Image */}
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-neon bg-gradient-to-br from-primary-900 to-primary-700">
+                      {/* Profile Image - Always visible */}
                       <Image 
                         src="/images/profile.jpg" 
                         alt="محمد الناغي"
                         fill
                         className="object-cover"
                         priority
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
-                        }}
                       />
-                      {/* Fallback if image not found */}
-                      <div className="w-full h-full bg-gradient-to-br from-primary-600 via-purple-600 to-neon-600 flex items-center justify-center" style={{ display: 'none' }}>
-                        <span className="text-4xl md:text-5xl font-black text-white drop-shadow-2xl" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                          م
-                        </span>
-                      </div>
                     </div>
                   </motion.div>
 
