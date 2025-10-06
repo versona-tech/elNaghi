@@ -1,0 +1,38 @@
+{
+  "name": "elnagy-campaign-website",
+  "version": "1.0.0",
+  "description": "موقع إلكتروني احترافي للمرشح محمد الناغي - تصميم 2026 مع Glassmorphism",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "build": "cd frontend && npm run build",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "deploy": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "campaign",
+    "political",
+    "website",
+    "nextjs",
+    "nodejs",
+    "mongodb",
+    "glassmorphism",
+    "2026"
+  ],
+  "author": "محمد الناغي",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/elnagy.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
