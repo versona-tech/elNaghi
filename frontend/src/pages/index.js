@@ -166,10 +166,10 @@ export default function Home() {
               className="grid grid-cols-2 gap-6"
             >
               {[
-                { icon: FaHandHoldingHeart, title: 'المصداقية', desc: 'وعود واقعية قابلة للتنفيذ', gradient: 'from-primary-600 to-primary-700' },
-                { icon: FaGraduationCap, title: 'الخبرة', desc: 'سنوات من العمل المجتمعي', gradient: 'from-accent-600 to-accent-700' },
-                { icon: FaBriefcase, title: 'التنمية', desc: 'خطة شاملة للتطوير', gradient: 'from-gold-600 to-gold-700' },
-                { icon: FaChartLine, title: 'النتائج', desc: 'إنجازات ملموسة', gradient: 'from-secondary-600 to-secondary-700' }
+                { icon: FaHandHoldingHeart, title: 'المصداقية', desc: 'وعود واقعية قابلة للتنفيذ', gradient: 'from-primary-600 to-primary-800' },
+                { icon: FaGraduationCap, title: 'الخبرة', desc: 'سنوات من العمل المجتمعي', gradient: 'from-gold-500 to-gold-700' },
+                { icon: FaBriefcase, title: 'التنمية', desc: 'خطة شاملة للتطوير', gradient: 'from-prosperity-600 to-prosperity-800' },
+                { icon: FaChartLine, title: 'النتائج', desc: 'إنجازات ملموسة', gradient: 'from-navy-600 to-navy-800' }
               ].map((item, index) => (
                 <motion.div
                   key={item.title}
