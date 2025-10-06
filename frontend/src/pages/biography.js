@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { FaGraduationCap, FaHospital, FaBriefcase, FaRoad, FaFutbol, FaChartLine } from 'react-icons/fa';
 
 const BiographyPage = () => {
@@ -34,6 +35,23 @@ const BiographyPage = () => {
       {/* Main Content */}
       <section className="py-16">
         <div className="container-custom">
+          {/* Profile Section */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="card p-8 text-center">
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-8 border-primary-200 shadow-2xl">
+                <Image 
+                  src="/images/profile.jpg" 
+                  alt="محمد الناغي"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">محمد إبراهيم علي الناغي</h2>
+              <p className="text-xl text-primary-600 font-semibold">مرشح دائرة منية النصر والجمالية</p>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {qualifications.map((qual, index) => (
               <div key={index} className="card p-6 text-center">
