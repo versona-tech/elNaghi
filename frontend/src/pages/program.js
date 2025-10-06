@@ -54,7 +54,7 @@ const ProgramPage = () => {
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">البرنامج الانتخابي</h1>
-          <p className="text-xl text-primary-100">خطة عمل شاملة لتطوير دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
+          <p className="text-xl text-primary-100">خريطة طريق واقعية بأهداف زمنية ومؤشرات قياس للأثر في دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
         </div>
       </section>
 
@@ -88,6 +88,14 @@ const ProgramPage = () => {
             </div>
           ) : (
             <div className="space-y-8">
+              <div className="card p-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">رؤية وأولويات</h2>
+                <p className="text-gray-700 leading-relaxed">
+                  نلتزم ببرنامج يُعلي من كرامة المواطن ويضع الخدمات الأساسية في المقدمة: مدارس آمنة ومعلمين مدرَّبين،
+                  وحدات صحية تعمل بكفاءة، طرق ومرافق متاحة للجميع، وتمكين اقتصادي للشباب والمرأة. نعتمد على شراكات مع
+                  الجهات التنفيذية والمجتمع المدني، وجدول زمني واضح، ومتابعة شهرية معلنة لضمان الشفافية والمحاسبة.
+                </p>
+              </div>
               {filteredProgram.map((item) => (
                 <div key={item._id} className="card p-8 hover:shadow-2xl transition-shadow">
                   <div className="flex items-start gap-6">

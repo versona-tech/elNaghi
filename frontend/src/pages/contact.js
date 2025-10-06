@@ -38,7 +38,7 @@ const ContactPage = () => {
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">اسأل المرشح</h1>
-          <p className="text-xl text-primary-100">نحن هنا للاستماع إليك والعمل على حل مشاكلك</p>
+          <p className="text-xl text-primary-100">صوتك مهم — نقرأ كل رسالة ونتابع كل طلب باهتمام</p>
         </div>
       </section>
 

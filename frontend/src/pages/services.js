@@ -98,7 +98,7 @@ const ServicesPage = () => {
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">الخدمات الحكومية</h1>
           <p className="text-xl text-primary-100">
-            روابط مباشرة للخدمات الحكومية لتسهيل إنجاز معاملاتك
+            دليل سريع وروابط موثوقة لإنجاز معاملاتك بأقل وقت ومجهود — هدفنا تسهيل وصولك للخدمة.
           </p>
         </div>
       </section>
@@ -141,7 +141,7 @@ const ServicesPage = () => {
           <div className="mt-12 card p-8 bg-gradient-to-br from-primary-600 to-primary-800 text-white text-center">
             <h2 className="text-3xl font-bold mb-4">تحتاج مساعدة؟</h2>
             <p className="text-xl text-primary-100 mb-6">
-              إذا واجهت أي صعوبة في إنجاز معاملاتك الحكومية، لا تتردد في التواصل معنا
+              فريق الدعم بحملة محمد الناغي جاهز لمساعدتك خطوة بخطوة حتى تُنجز طلبك بنجاح.
             </p>
             <Link href="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
               تواصل معنا الآن

@@ -44,7 +44,7 @@ const NewsPage = () => {
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">الأخبار والأنشطة</h1>
-          <p className="text-xl text-primary-100">تابع آخر الأخبار والفعاليات والإنجازات</p>
+          <p className="text-xl text-primary-100">تغطيات موثّقة لأنشطة الحملة وإنجازاتها وآراء المواطنين</p>
         </div>
       </section>
 
@@ -148,7 +148,7 @@ const NewsPage = () => {
             </>
           ) : (
             <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">لا توجد أخبار حالياً</p>
+              <p className="text-gray-500 text-lg">لا توجد أخبار حالياً — ترقّبوا جديد الحملة قريباً.</p>
             </div>
           )}
         </div>

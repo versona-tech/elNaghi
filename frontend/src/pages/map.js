@@ -60,7 +60,7 @@ const MapPage = () => {
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">الخريطة التفاعلية</h1>
           <p className="text-xl text-primary-100">
-            استكشف قرى ومناطق دائرة منية النصر والكردي وميت سلسيل والجمالية
+            صورة واضحة لمراكز وقرى الدائرة مع لمحات سريعة عن السكان والأنشطة.
           </p>
         </div>
       </section>
@@ -109,7 +109,7 @@ const MapPage = () => {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="w-6 h-6 bg-red-500 rounded-full"></div>
-                    <span className="text-sm text-gray-700">المقر الرئيسي</span>
+                    <span className="text-sm text-gray-700">المقر الرئيسي للحملة</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-6 h-6 bg-blue-500 rounded-full"></div>

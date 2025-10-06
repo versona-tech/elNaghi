@@ -39,7 +39,7 @@ const EventsPage = () => {
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">الفعاليات</h1>
-          <p className="text-xl text-primary-100">شارك في اللقاءات والأنشطة القادمة</p>
+          <p className="text-xl text-primary-100">مواعيد اللقاءات الجماهيرية والجولات الميدانية وندوات الحوار</p>
         </div>
       </section>
 
@@ -141,7 +141,7 @@ const EventsPage = () => {
           ) : (
             <div className="text-center py-20">
               <p className="text-gray-500 text-lg">
-                {showUpcoming ? 'لا توجد فعاليات قادمة حالياً' : 'لا توجد فعاليات سابقة'}
+                {showUpcoming ? 'لا توجد فعاليات قادمة حالياً — سننشر المواعيد الجديدة قريباً' : 'لا توجد فعاليات سابقة'}
               </p>
             </div>
           )}

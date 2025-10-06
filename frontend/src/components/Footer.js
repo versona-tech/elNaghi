@@ -47,8 +47,8 @@ const Footer = () => {
               محمد الناغي
             </h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية.
-              نعمل معاً من أجل مستقبل أفضل لأبناء الدائرة.
+              مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية – محافظة الدقهلية.
+              نلتزم ببرنامج واقعي يقيس الأثر على حياة الناس، وبالشفافية والمساءلة والعمل الميداني مع أبناء الدائرة.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
@@ -57,6 +57,7 @@ const Footer = () => {
                   href={social.href}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label={`رابط ${social.icon.name}`}
                   className={`bg-gradient-to-r ${social.color} p-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
                 >
                   <social.icon size={20} />
@@ -150,7 +151,7 @@ const Footer = () => {
             جميع الحقوق محفوظة © {currentYear} - <span className="font-bold text-gold-400">محمد الناغي</span>
           </p>
           <p className="text-sm text-gray-500">
-            تم التطوير بواسطة <span className="text-primary-400 font-semibold">فريق التطوير</span>
+            تم التطوير بواسطة <span className="text-primary-400 font-semibold">الفريق الرقمي للحملة</span>
           </p>
         </motion.div>
       </div>

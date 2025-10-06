@@ -107,7 +107,7 @@ export default function Home() {
               className="text-3xl md:text-4xl mb-4 font-bold text-gold-200"
               style={{ fontFamily: 'Tajawal, sans-serif' }}
             >
-              مرشح مجلس النواب - دائرة منية النصر والكردي وميت سلسيل والجمالية
+              مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية
             </motion.p>
             <motion.p 
               initial={{ opacity: 0 }}
@@ -115,7 +115,7 @@ export default function Home() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-xl md:text-2xl mb-10 text-primary-100"
             >
-              دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية
+              برنامج واقعي • أولويات واضحة • التزام بالمحاسبة — معاً لنخدم أهلنا في الدائرة الكريمة بمحافظة الدقهلية
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -149,9 +149,10 @@ export default function Home() {
                 من أنا؟
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                محمد الناغي، ابن قرية الرياض بمركز منية النصر، أسعى لخدمة أبناء 
-                الدائرة وتحقيق تنمية حقيقية شاملة تلمسها كل أسرة. أؤمن بأن التغيير يبدأ من 
-                الاستماع لهموم المواطنين والعمل الجاد لحل مشاكلهم.
+                أنا محمد الناغي، ابن قرية الرياض بمركز منية النصر. تربيت على خدمة الناس واحترام الكلمة
+                والوفاء بالوعد. أضع مصلحة أهلي في مقدمة الأولويات، وأسعى لبرنامج عملي يبدأ من احتياجات
+                المواطن اليومية: تعليم جيد، رعاية صحية لائقة، فرص عمل كريمة، وبنية تحتية تخدم الجميع.
+                منهجي بسيط: استماع دقيق، حلول قابلة للتنفيذ، ومتابعة مستمرة حتى نرى الأثر على الأرض.
               </p>
               <Link href="/biography" className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-300 group shadow-lg hover:shadow-xl">
                 اقرأ المزيد عن السيرة الذاتية
@@ -258,7 +259,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary-700 to-primary-900 bg-clip-text text-transparent" style={{ fontFamily: 'Cairo, sans-serif' }}>
                 أحدث الأخبار
               </h2>
-              <p className="text-xl text-gray-600 mt-2">تابع آخر الأنشطة والفعاليات</p>
+              <p className="text-xl text-gray-600 mt-2">تابع المستجدات لحظة بلحظة وكن جزءاً من الحدث</p>
             </div>
             <Link href="/news" className="hidden md:inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent-600 to-accent-700 text-white font-bold rounded-lg hover:from-accent-700 hover:to-accent-800 transition-all duration-300 shadow-lg hover:shadow-xl">
               جميع الأخبار
@@ -296,7 +297,7 @@ export default function Home() {
               </motion.div>
             )) : (
               <div className="col-span-3 text-center text-gray-500 py-12">
-                لا توجد أخبار حالياً
+                لا توجد أخبار حالياً — عد إلينا قريباً لمتابعة آخر المستجدات.
               </div>
             )}
           </div>
@@ -315,7 +316,7 @@ export default function Home() {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="section-title">الفعاليات القادمة</h2>
-              <p className="section-subtitle">شارك في اللقاءات والأنشطة</p>
+              <p className="section-subtitle">شاركنا لقاءات مباشرة ونقاشات مفتوحة مع أبناء الدائرة</p>
             </div>
             <Link href="/events" className="btn-secondary hidden md:flex items-center gap-2">
               جميع الفعاليات
@@ -350,7 +351,7 @@ export default function Home() {
               </div>
             )) : (
               <div className="col-span-3 text-center text-gray-500 py-8">
-                لا توجد فعاليات قادمة حالياً
+                لا توجد فعاليات قادمة حالياً — سنعلن عن المواعيد الجديدة قريباً.
               </div>
             )}
           </div>
