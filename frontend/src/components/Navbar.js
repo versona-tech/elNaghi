@@ -259,7 +259,7 @@ const Navbar = () => {
               transition={{ delay: 0.5 }}
               className="hidden lg:flex items-center gap-2"
             >
-              {navLinks.map((link, index) => (
+              {navigation.map((link, index) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: -20 }}
@@ -322,7 +322,7 @@ const Navbar = () => {
                 className="lg:hidden overflow-hidden"
               >
                 <div className="pb-6 space-y-3 px-2">
-                  {navLinks.map((link, index) => (
+                  {navigation.map((link, index) => (
                     <motion.div
                       key={link.href}
                       initial={{ x: -50, opacity: 0 }}
