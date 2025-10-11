@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { 
   FaGraduationCap, FaHospital, FaBriefcase, FaRoad, 
-  FaFutbol, FaChartLine, FaLeaf, FaBook, FaHome, FaHandsHelping
+  FaFutbol, FaChartLine, FaLeaf, FaBook, FaHome, FaHandsHelping,
+  FaDownload, FaFilePdf
 } from 'react-icons/fa';
 import { programAPI } from '@/lib/api';
 
@@ -222,8 +224,26 @@ const ProgramPage = () => {
       {/* Hero */}
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
         <div className="container-custom">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">البرنامج الانتخابي</h1>
-          <p className="text-xl text-primary-100">خريطة طريق واقعية بأهداف زمنية ومؤشرات قياس للأثر في دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">البرنامج الانتخابي</h1>
+              <p className="text-xl text-primary-100">خريطة طريق واقعية بأهداف زمنية ومؤشرات قياس للأثر في دائرة منية النصر والكردي وميت سلسيل والجمالية</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a 
+                href="/documents/electoral-program.pdf" 
+                download
+                className="flex items-center gap-3 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center"
+              >
+                <FaFilePdf size={24} />
+                <span>تحميل البرنامج الكامل PDF</span>
+                <FaDownload />
+              </a>
+              <span className="text-xs text-primary-200 text-center">
+                📄 النسخة الكاملة للطباعة والمشاركة
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 

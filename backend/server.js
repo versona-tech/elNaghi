@@ -95,7 +95,8 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+// Start server and keep reference for graceful shutdown
+const server = app.listen(PORT, () => {
   console.log(`
 ╔══════════════════════════════════════════════════════════╗
 ║                                                          ║
@@ -113,7 +114,11 @@ app.listen(PORT, () => {
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
-  console.log(`خطأ: ${err.message}`);
-  // Close server & exit process
-  server.close(() => process.exit(1));
+  console.error(`Unhandled Rejection: ${err && err.message ? err.message : err}`);
+  // Close server & exit process (if server defined)
+  if (typeof server !== 'undefined' && server.close) {
+    server.close(() => process.exit(1));
+  } else {
+    process.exit(1);
+  }
 });

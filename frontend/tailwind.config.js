@@ -8,19 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Egyptian Political Campaign Colors - Luxurious & Professional
+        // Professional Campaign Colors - Navy Blue & Gold Theme
         primary: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',  // Main Red - Professional & Strong
-          900: '#7f1d1d',
-          950: '#450a0a',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',  // Main Blue - Professional & Trust
+          800: '#1e40af',  // Deep Blue - Authority
+          900: '#1e3a8a',  // Navy - Prestige
+          950: '#172554',
         },
         // Rich Gold - Luxury & Success
         gold: {
@@ -85,14 +85,10 @@ module.exports = {
           black: '#000000',   // علم مصر - أسود
           gold: '#C09300'     // النسر الذهبي
         },
-        // Keep some accent colors for modern touch
-        neon: {
-          500: '#d946ef',
-          600: '#c026d3',
-        },
-        cyan: {
-          400: '#22d3ee',
-          500: '#06b6d4',
+        // Accent colors for highlights
+        accent: {
+          400: '#60a5fa',
+          500: '#3b82f6',
         }
       },
       backgroundImage: {

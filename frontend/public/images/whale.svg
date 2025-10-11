@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="currentColor">
+  <!-- Professional Official Whale - Election Symbol Style -->
+  <defs>
+    <!-- Navy Blue Gradient -->
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gold Accent -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#b45309;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b45309;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Belly Highlight -->
+    <linearGradient id="bellyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b5998;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Whale Body - Simplified & Professional -->
+  <path d="M 520 200 
+           Q 530 230 530 260 
+           Q 530 300 490 330 
+           L 420 350 
+           Q 390 360 360 360 
+           L 200 360 
+           Q 140 360 100 320 
+           Q 60 280 50 220 
+           Q 45 180 60 140 
+           Q 80 90 130 60 
+           Q 180 30 240 30 
+           L 340 30 
+           Q 400 30 450 60 
+           Q 500 90 520 140 
+           Z" 
+        fill="url(#bodyGradient)" 
+        stroke="#0a1628" 
+        stroke-width="8"
+        stroke-linejoin="round"/>
+  
+  <!-- Belly Highlight - Clean & Simple -->
+  <ellipse cx="250" cy="280" rx="140" ry="60" 
+           fill="url(#bellyGradient)" 
+           opacity="0.6"/>
+  
+  <!-- Tail - Strong & Dignified -->
+  <path d="M 420 350 
+           Q 460 340 490 320 
+           Q 510 310 525 295 
+           Q 535 280 540 260 
+           L 550 240 
+           Q 552 230 550 220 
+           Q 545 205 530 200 
+           L 515 205 
+           Q 505 210 500 225 
+           L 495 245 
+           Q 490 265 480 285 
+           Q 470 305 455 320 
+           L 435 335 
+           Z" 
+        fill="url(#bodyGradient)" 
+        stroke="#0a1628" 
+        stroke-width="7"
+        stroke-linejoin="round"/>
+  
+  <!-- Dorsal Fin - Elegant & Bold -->
+  <path d="M 280 30 
+           Q 275 10 275 -10 
+           Q 275 -25 285 -30 
+           Q 295 -35 305 -25 
+           Q 315 -15 315 0 
+           L 310 25 
+           Q 308 35 300 38 
+           Q 290 40 280 30 
+           Z" 
+        fill="url(#accentGradient)" 
+        stroke="#0a1628" 
+        stroke-width="4"/>
+  
+  <!-- Pectoral Fin -->
+  <path d="M 180 280 
+           Q 160 290 140 310 
+           Q 130 320 125 335 
+           Q 122 345 128 352 
+           Q 135 358 145 355 
+           Q 160 350 175 335 
+           L 190 310 
+           Q 195 295 180 280 
+           Z" 
+        fill="url(#accentGradient)" 
+        stroke="#0a1628" 
+        stroke-width="4"/>
+  
+  <!-- Eye - Professional -->
+  <circle cx="360" cy="140" r="18" 
+          fill="#000000" 
+          stroke="#0a1628" 
+          stroke-width="2"/>
+  <circle cx="366" cy="134" r="6" 
+          fill="#ffffff" 
+          opacity="0.9"/>
+  
+  <!-- Water Spout - Refined & Regal -->
+  <path d="M 285 20 
+           Q 283 0 285 -20 
+           Q 287 -35 293 -40" 
+        fill="none" 
+        stroke="url(#accentGradient)" 
+        stroke-width="9" 
+        stroke-linecap="round" 
+        opacity="0.85"/>
+  
+  <path d="M 300 15 
+           Q 303 -5 307 -25 
+           Q 310 -38 315 -45" 
+        fill="none" 
+        stroke="url(#accentGradient)" 
+        stroke-width="7" 
+        stroke-linecap="round" 
+        opacity="0.75"/>
+  
+  <path d="M 270 18 
+           Q 265 -2 263 -22 
+           Q 260 -35 255 -42" 
+        fill="none" 
+        stroke="url(#accentGradient)" 
+        stroke-width="7" 
+        stroke-linecap="round" 
+        opacity="0.75"/>
+  
+  <!-- Body Definition Lines - Subtle -->
+  <path d="M 130 170 Q 160 180 200 185" 
+        fill="none" 
+        stroke="#2d4a7c" 
+        stroke-width="3" 
+        opacity="0.4" 
+        stroke-linecap="round"/>
+  
+  <path d="M 140 210 Q 170 220 210 225" 
+        fill="none" 
+        stroke="#2d4a7c" 
+        stroke-width="3" 
+        opacity="0.4" 
+        stroke-linecap="round"/>
+  
+  <!-- Crown/Royal Detail on Back -->
+  <path d="M 320 100 
+           L 310 85 
+           L 320 70 
+           L 330 85 
+           Z" 
+        fill="url(#accentGradient)" 
+        opacity="0.5"/>
+</svg>

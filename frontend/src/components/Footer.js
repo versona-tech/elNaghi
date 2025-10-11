@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   FaFacebook, FaTwitter, FaYoutube, FaWhatsapp, FaInstagram,
@@ -43,9 +44,38 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-black mb-4 bg-gradient-to-r from-gold-400 to-gold-600 bg-clip-text text-transparent" style={{ fontFamily: 'Cairo, sans-serif' }}>
-              محمد الناغي
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <h3 className="text-3xl font-black bg-gradient-to-r from-gold-400 to-gold-600 bg-clip-text text-transparent" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                محمد الناغي
+              </h3>
+              <motion.div
+                animate={{ 
+                  y: [0, -5, 0],
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-9 h-9"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(217, 119, 6, 0.4))' }}
+              >
+                <Image 
+                  src="/images/whale.png" 
+                  alt="رمز الحوت"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </div>
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-navy-800 to-navy-900 text-white border-2 border-gold-500 px-4 py-2 rounded-lg mb-4">
+              <span className="text-2xl font-black text-gold-400" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                13
+              </span>
+              <span className="text-sm font-bold">
+                🐋 الرمز الانتخابي: الحوت
+              </span>
+            </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية – محافظة الدقهلية.
               نلتزم ببرنامج واقعي يقيس الأثر على حياة الناس، وبالشفافية والمساءلة والعمل الميداني مع أبناء الدائرة.

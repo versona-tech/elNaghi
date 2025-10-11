@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -55,8 +56,8 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="محمد الناغي - مرشح مجلس النواب | دائرة منية النصر والكردي وميت سلسيل والجمالية"
-        description="الموقع الرسمي للمرشح محمد إبراهيم علي الناغي - مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية. معاً نبني مستقبل أفضل لأبناء الدائرة."
+        title="محمد الناغي - رقم 13 🐋 الحوت | مرشح مجلس النواب دائرة منية النصر"
+        description="الموقع الرسمي للمرشح محمد إبراهيم علي الناغي - الرمز الانتخابي: رقم 13 - الحوت 🐋 - مرشح مجلس النواب عن دائرة منية النصر والكردي وميت سلسيل والجمالية - محافظة الدقهلية. معاً نبني مستقبل أفضل لأبناء الدائرة."
         image="/images/og-image.jpg"
       />
 
@@ -91,6 +92,82 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
+            {/* Election Symbol Badge - Whale */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 15 }}
+              className="flex justify-center mb-8"
+            >
+              <div className="relative group">
+                <motion.div
+                  animate={{ 
+                    y: [0, -12, 0],
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative"
+                >
+                  {/* Glowing background - Gold & Navy */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500 to-gold-700 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
+                  
+                  {/* Main badge */}
+                  <div className="relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 backdrop-blur-sm rounded-3xl px-8 py-5 shadow-2xl border-4 border-gold-500 flex items-center gap-4">
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.08, 1],
+                      }}
+                      transition={{ 
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="relative w-16 h-16 md:w-20 md:h-20"
+                      style={{ filter: 'drop-shadow(0 0 12px rgba(217, 119, 6, 0.5))' }}
+                    >
+                      <Image 
+                        src="/images/whale.png" 
+                        alt="رمز الحوت"
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </motion.div>
+                    <div className="text-right">
+                      <div className="text-xs md:text-sm font-bold text-gold-400 uppercase tracking-wide">الرمز الانتخابي</div>
+                      <div className="flex items-center gap-3">
+                        <div className="text-4xl md:text-5xl font-black text-gold-400" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                          13
+                        </div>
+                        <div className="text-2xl md:text-3xl font-black text-white flex items-center gap-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                          🐋 الحوت
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Crown sparkles */}
+                <motion.div
+                  animate={{ 
+                    scale: [0, 1.2, 0],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{ 
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute -top-3 -right-3 text-2xl"
+                >
+                  👑
+                </motion.div>
+              </div>
+            </motion.div>
+
             <motion.h1 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
