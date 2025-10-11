@@ -81,4 +81,12 @@ export const mediaAPI = {
   delete: (id) => api.delete(`/api/media/${id}`),
 };
 
+// Facebook API
+export const facebookAPI = {
+  getPosts: (params) => api.get('/api/facebook/posts', { params }),
+  getFeed: (params) => api.get('/api/facebook/feed', { params }),
+  getPhotos: (params) => api.get('/api/facebook/photos', { params }),
+  getVideos: (params) => api.get('/api/facebook/videos', { params }),
+};
+
 export default api;

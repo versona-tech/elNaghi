@@ -55,6 +55,7 @@ app.use('/api/news', require('./routes/news'));
 app.use('/api/events', require('./routes/events'));
 app.use('/api/program', require('./routes/program'));
 app.use('/api/media', require('./routes/media'));
+app.use('/api/facebook', require('./routes/facebook'));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -77,7 +78,8 @@ app.get('/', (req, res) => {
       news: '/api/news',
       events: '/api/events',
       program: '/api/program',
-      media: '/api/media'
+      media: '/api/media',
+      facebook: '/api/facebook'
     }
   });
 });
