@@ -20,26 +20,13 @@ const FindPollingStationPage = () => {
       return;
     }
 
-    setLoading(true);
-
-    // عرض النتيجة في الصفحة مباشرة بدون تحويل لموقع آخر
-    try {
-      // Simulated result - يتم عرض النتيجة بعد 1.5 ثانية
-      setTimeout(() => {
-        setResult({
-          name: 'الناخب الكريم',
-          pollingStation: 'مدرسة منية النصر الابتدائية',
-          address: 'قرية منية النصر - مركز منية النصر - الدقهلية',
-          stationNumber: '12',
-          committeeNumber: '3'
-        });
-        setLoading(false);
-      }, 1500);
-
-    } catch (err) {
-      setError('حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى');
-      setLoading(false);
-    }
+    // التوجه مباشرة للموقع الرسمي للحصول على البيانات الصحيحة
+    window.open('https://www.elections.eg/inquiry', '_blank');
+    
+    // عرض رسالة توجيهية
+    setResult({
+      redirected: true
+    });
   };
 
   return (
@@ -149,32 +136,10 @@ const FindPollingStationPage = () => {
                   )}
                 </button>
               </form>
-
-              {/* Official Link */}
-              <div className="mt-8 p-6 bg-blue-50 border-r-4 border-blue-500 rounded-lg">
-                <div className="flex items-start gap-3">
-                  <FaInfoCircle className="text-blue-600 text-2xl flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">الموقع الرسمي</h3>
-                    <p className="text-gray-700 mb-3">
-                      للبحث الرسمي عن لجنتك الانتخابية، يمكنك زيارة الموقع الرسمي للهيئة الوطنية للانتخابات:
-                    </p>
-                    <a
-                      href="https://www.elections.eg/inquiry"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all"
-                    >
-                      <span>انتقل للموقع الرسمي</span>
-                      <span>←</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
             </motion.div>
 
             {/* Result */}
-            {result && (
+            {result && result.redirected && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -182,41 +147,38 @@ const FindPollingStationPage = () => {
                 className="bg-white rounded-2xl shadow-2xl p-8 md:p-12"
               >
                 <div className="text-center mb-8">
-                  <div className="inline-block p-6 bg-green-100 rounded-full mb-4">
-                    <FaMapMarkerAlt className="text-5xl text-green-600" />
+                  <div className="inline-block p-6 bg-blue-100 rounded-full mb-4">
+                    <FaInfoCircle className="text-5xl text-blue-600" />
                   </div>
-                  <h2 className="text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                    تم العثور على لجنتك!
+                  <h2 className="text-3xl font-black text-gray-900 mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                    تم فتح الموقع الرسمي
                   </h2>
+                  <p className="text-xl text-gray-700 leading-relaxed mb-4">
+                    تم توجيهك إلى الموقع الرسمي للهيئة الوطنية للانتخابات للحصول على البيانات الصحيحة للجنتك الانتخابية
+                  </p>
+                  <p className="text-lg text-gray-600">
+                    إذا لم يفتح الموقع تلقائياً، يمكنك الضغط على الزر أدناه:
+                  </p>
                 </div>
 
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-xl">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">معلومات اللجنة</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                        <span className="text-gray-600 font-semibold">اسم اللجنة:</span>
-                        <span className="text-gray-900 font-bold text-lg">{result.pollingStation}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                        <span className="text-gray-600 font-semibold">العنوان:</span>
-                        <span className="text-gray-900 font-bold">{result.address}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                        <span className="text-gray-600 font-semibold">رقم المحطة:</span>
-                        <span className="text-primary-700 font-black text-2xl">{result.stationNumber}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-3">
-                        <span className="text-gray-600 font-semibold">رقم اللجنة:</span>
-                        <span className="text-primary-700 font-black text-2xl">{result.committeeNumber}</span>
-                      </div>
-                    </div>
+                  <div className="text-center">
+                    <a
+                      href="https://www.elections.eg/inquiry"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white text-xl font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl"
+                    >
+                      <FaSearch />
+                      <span>افتح الموقع الرسمي</span>
+                      <span>←</span>
+                    </a>
                   </div>
 
                   <div className="p-6 bg-gold-50 border-r-4 border-gold-500 rounded-lg">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">🐋 صوتك أمانة</h3>
                     <p className="text-gray-700 leading-relaxed mb-3">
-                      لا تنسى أن تشارك في الانتخابات وتمنح صوتك لـ <strong className="text-primary-700">محمد إبراهيم علي الناغي</strong>
+                      بعد معرفة لجنتك، لا تنسى أن تشارك في الانتخابات وتمنح صوتك لـ <strong className="text-primary-700">محمد إبراهيم علي الناغي</strong>
                     </p>
                     <p className="text-2xl font-black text-primary-900">
                       رقم 13 - الحوت 🐋
