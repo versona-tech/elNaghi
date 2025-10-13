@@ -237,22 +237,10 @@ const Navbar = () => {
                     href={link.href}
                     className="relative px-4 py-2 text-gray-700 font-semibold text-sm
                              rounded-lg transition-all duration-300
-                             group overflow-hidden hover:scale-105"
+                             hover:bg-gradient-to-r hover:from-primary-800 hover:to-primary-600
+                             hover:text-white hover:scale-105"
                   >
-                    <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                      {link.name}
-                    </span>
-                    {/* Gold hover background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-primary-800 to-primary-600 opacity-0 group-hover:opacity-100 rounded-lg"
-                      initial={false}
-                      transition={{ duration: 0.3 }}
-                    />
-                    {/* Gold bottom border */}
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-500 scale-x-0 group-hover:scale-x-100 rounded-full"
-                      transition={{ duration: 0.3 }}
-                    />
+                    {link.name}
                   </Link>
                 </motion.div>
               ))}

@@ -22,8 +22,9 @@ const FindPollingStationPage = () => {
 
     setLoading(true);
 
+    // عرض النتيجة في الصفحة مباشرة بدون تحويل لموقع آخر
     try {
-      // Simulated result for demonstration
+      // Simulated result - يتم عرض النتيجة بعد 1.5 ثانية
       setTimeout(() => {
         setResult({
           name: 'الناخب الكريم',
