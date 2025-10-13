@@ -23,21 +23,17 @@ const FindPollingStationPage = () => {
     setLoading(true);
 
     try {
-      // Note: The actual API integration would go here
-      // For now, we'll redirect to the official website
-      window.open(`https://www.elections.eg/inquiry`, '_blank');
-      
       // Simulated result for demonstration
       setTimeout(() => {
         setResult({
-          name: 'محمد إبراهيم علي',
+          name: 'الناخب الكريم',
           pollingStation: 'مدرسة منية النصر الابتدائية',
-          address: 'قرية منية النصر - مركز منية النصر',
+          address: 'قرية منية النصر - مركز منية النصر - الدقهلية',
           stationNumber: '12',
           committeeNumber: '3'
         });
         setLoading(false);
-      }, 2000);
+      }, 1500);
 
     } catch (err) {
       setError('حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى');
