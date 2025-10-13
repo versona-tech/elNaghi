@@ -212,6 +212,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Presidential Patronage Section */}
+      <section className="py-12 bg-gradient-to-r from-green-700 via-green-800 to-green-900 border-y-4 border-gold-500">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-center gap-8"
+          >
+            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gold-400 shadow-2xl flex-shrink-0">
+              <Image 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Abdel_Fattah_el-Sisi_in_the_Leaders%27_Lounge%2C_New_York%2C_2014_%28cropped%29.jpg/800px-Abdel_Fattah_el-Sisi_in_the_Leaders%27_Lounge%2C_New_York%2C_2014_%28cropped%29.jpg"
+                alt="فخامة الرئيس عبد الفتاح السيسي"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="text-center md:text-right">
+              <h3 className="text-3xl md:text-4xl font-black text-white mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                تحت رعاية الدولة المصرية
+              </h3>
+              <p className="text-2xl md:text-3xl font-bold text-gold-300 mb-2">
+                فخامة الرئيس عبد الفتاح السيسي
+              </p>
+              <p className="text-lg md:text-xl text-gray-200">
+                رئيس جمهورية مصر العربية
+              </p>
+              <div className="mt-4 inline-block px-6 py-2 bg-gold-500 text-white font-bold rounded-lg shadow-lg">
+                الانتخابات البرلمانية 2025
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About Preview */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
@@ -226,7 +262,7 @@ export default function Home() {
                 من أنا؟
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                أنا محمد الناغي، ابن قرية الرياض بمركز منية النصر. تربيت على خدمة الناس واحترام الكلمة
+                أنا محمد الناغي، ابن برمبال القديمة والرياض بمركز منية النصر. تربيت على خدمة الناس واحترام الكلمة
                 والوفاء بالوعد. أضع مصلحة أهلي في مقدمة الأولويات، وأسعى لبرنامج عملي يبدأ من احتياجات
                 المواطن اليومية: تعليم جيد، رعاية صحية لائقة، فرص عمل كريمة، وبنية تحتية تخدم الجميع.
                 منهجي بسيط: استماع دقيق، حلول قابلة للتنفيذ، ومتابعة مستمرة حتى نرى الأثر على الأرض.

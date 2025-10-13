@@ -155,7 +155,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 hover:text-gold-400 transition-colors">
                 <FaMapMarkerAlt className="text-primary-500 mt-1 flex-shrink-0" />
-                <span>قرية الرياض - مركز منية النصر<br />محافظة الدقهلية</span>
+                <span>قرية برمبال القديمة والرياض - مركز منية النصر<br />محافظة الدقهلية</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 hover:text-gold-400 transition-colors">
                 <FaPhone className="text-primary-500 flex-shrink-0" />

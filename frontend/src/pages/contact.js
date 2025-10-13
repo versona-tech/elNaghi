@@ -159,7 +159,7 @@ const ContactPage = () => {
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">العنوان</h3>
                       <p className="text-gray-600">
-                        قرية الرياض - مركز منية النصر<br />
+                        قرية برمبال القديمة والرياض - مركز منية النصر<br />
                         محافظة الدقهلية
                       </p>
                     </div>
