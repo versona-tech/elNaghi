@@ -20,54 +20,14 @@ const FindPollingStationPage = () => {
       return;
     }
 
-    setLoading(true);
-
-    try {
-      // محاولة جلب البيانات من API الموقع الرسمي
-      // في حالة عدم توفر API، نستخدم بيانات تجريبية
-      
-      setTimeout(() => {
-        // استخراج معلومات من الرقم القومي
-        const governorateCode = nationalId.substring(7, 9);
-        const birthYear = nationalId.substring(1, 3);
-        const century = nationalId.charAt(0);
-        
-        // حساب السن التقريبي
-        let year = parseInt(birthYear);
-        if (century === '2') year += 1900;
-        else if (century === '3') year += 2000;
-        
-        const age = 2025 - year;
-        
-        // تحديد المحافظة بناءً على الكود
-        let governorate = 'الدقهلية';
-        let city = 'منية النصر';
-        let station = 'مدرسة منية النصر الابتدائية';
-        
-        // رقم اللجنة بناءً على آخر رقمين من الرقم القومي
-        const lastTwo = nationalId.substring(12, 14);
-        const committeeNum = (parseInt(lastTwo) % 20) + 1;
-        const stationNum = (parseInt(lastTwo) % 50) + 1;
-        
-        setResult({
-          name: 'الناخب الكريم',
-          nationalId: nationalId,
-          age: age,
-          pollingStation: station,
-          address: `${city} - مركز ${city} - محافظة ${governorate}`,
-          governorate: governorate,
-          city: city,
-          stationNumber: stationNum.toString(),
-          committeeNumber: committeeNum.toString(),
-          note: 'البيانات أعلاه تقريبية. للتأكد من البيانات الدقيقة، يرجى زيارة الموقع الرسمي للهيئة الوطنية للانتخابات.'
-        });
-        setLoading(false);
-      }, 1500);
-
-    } catch (err) {
-      setError('حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى');
-      setLoading(false);
-    }
+    // فتح الموقع الرسمي مباشرة للحصول على البيانات الصحيحة
+    window.open('https://www.elections.eg/inquiry', '_blank');
+    
+    // عرض رسالة تأكيد
+    setResult({
+      redirected: true,
+      nationalId: nationalId
+    });
   };
 
   return (
@@ -180,7 +140,7 @@ const FindPollingStationPage = () => {
             </motion.div>
 
             {/* Result */}
-            {result && (
+            {result && result.redirected && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -189,111 +149,111 @@ const FindPollingStationPage = () => {
               >
                 <div className="text-center mb-6 md:mb-8">
                   <div className="inline-block p-4 md:p-6 bg-green-100 rounded-full mb-3 md:mb-4">
-                    <FaMapMarkerAlt className="text-3xl md:text-5xl text-green-600" />
+                    <FaInfoCircle className="text-3xl md:text-5xl text-green-600" />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                    تم العثور على لجنتك الانتخابية! 
+                  <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3 md:mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                    تم فتح الموقع الرسمي
                   </h2>
-                  <p className="text-sm md:text-lg text-gray-600">
+                  <p className="text-base md:text-xl text-gray-700 leading-relaxed mb-3 md:mb-4 px-4">
+                    تم توجيهك إلى <strong>الموقع الرسمي للهيئة الوطنية للانتخابات</strong> في نافذة جديدة
+                  </p>
+                  <p className="text-sm md:text-lg text-gray-600 px-4">
                     الرقم القومي: <span className="font-bold text-primary-700" dir="ltr">{result.nationalId}</span>
                   </p>
                 </div>
 
                 <div className="space-y-4 md:space-y-6">
-                  {/* معلومات اللجنة */}
-                  <div className="p-4 md:p-6 bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl border-2 border-primary-200">
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center gap-2">
-                      <FaMapMarkerAlt className="text-primary-600" />
-                      معلومات اللجنة الانتخابية
-                    </h3>
-                    <div className="space-y-3 md:space-y-4">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">اسم اللجنة:</span>
-                        <span className="text-gray-900 font-bold text-base md:text-lg">{result.pollingStation}</span>
-                      </div>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">العنوان الكامل:</span>
-                        <span className="text-gray-900 font-bold text-right text-sm md:text-base">{result.address}</span>
-                      </div>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">المحافظة:</span>
-                        <span className="text-gray-900 font-bold text-sm md:text-base">{result.governorate}</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4 pt-2">
-                        <div className="text-center p-4 bg-white rounded-lg shadow">
-                          <p className="text-sm text-gray-600 mb-1">رقم المحطة</p>
-                          <p className="text-4xl font-black text-primary-700">{result.stationNumber}</p>
-                        </div>
-                        <div className="text-center p-4 bg-white rounded-lg shadow">
-                          <p className="text-sm text-gray-600 mb-1">رقم اللجنة</p>
-                          <p className="text-4xl font-black text-primary-700">{result.committeeNumber}</p>
+                  {/* رابط الموقع الرسمي */}
+                  <div className="p-4 md:p-6 bg-blue-50 border-2 border-blue-500 rounded-xl">
+                    <div className="flex items-start gap-3">
+                      <FaInfoCircle className="text-blue-600 text-xl md:text-2xl flex-shrink-0 mt-1" />
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900 mb-2 text-lg md:text-xl">استعلم من المصدر الرسمي</h3>
+                        <p className="text-gray-700 mb-4 leading-relaxed text-sm md:text-base">
+                          للحصول على البيانات الصحيحة والدقيقة للجنتك الانتخابية، يرجى الاستعلام من الموقع الرسمي للهيئة الوطنية للانتخابات:
+                        </p>
+                        <div className="space-y-3">
+                          <a
+                            href="https://www.elections.eg/inquiry"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl text-sm md:text-base"
+                          >
+                            <FaSearch />
+                            <span>افتح الموقع الرسمي للاستعلام</span>
+                            <span>←</span>
+                          </a>
+                          <p className="text-xs md:text-sm text-gray-600">
+                            💡 سيتم فتح الموقع في نافذة جديدة
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* ملاحظة هامة */}
-                  {result.note && (
-                    <div className="p-5 bg-yellow-50 border-r-4 border-yellow-500 rounded-lg">
-                      <div className="flex items-start gap-3">
-                        <FaInfoCircle className="text-yellow-600 text-2xl flex-shrink-0 mt-1" />
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-2">ملاحظة هامة</h4>
-                          <p className="text-gray-700 leading-relaxed">{result.note}</p>
-                          <a
-                            href="https://www.elections.eg/inquiry"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-yellow-600 text-white font-bold rounded-lg hover:bg-yellow-700 transition-all text-sm"
-                          >
-                            <span>التحقق من الموقع الرسمي</span>
-                            <span>←</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  {/* خطوات الاستعلام */}
+                  <div className="p-4 md:p-6 bg-yellow-50 border-r-4 border-yellow-500 rounded-lg">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4">📋 خطوات الاستعلام</h3>
+                    <ul className="space-y-2 md:space-y-3 text-gray-700 text-sm md:text-base">
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-yellow-600 font-bold text-base md:text-lg">1.</span>
+                        <span>افتح الموقع الرسمي للهيئة الوطنية للانتخابات</span>
+                      </li>
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-yellow-600 font-bold text-base md:text-lg">2.</span>
+                        <span>أدخل رقمك القومي في خانة الاستعلام</span>
+                      </li>
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-yellow-600 font-bold text-base md:text-lg">3.</span>
+                        <span>اضغط على زر "بحث" أو "استعلام"</span>
+                      </li>
+                      <li className="flex items-start gap-2 md:gap-3">
+                        <span className="text-yellow-600 font-bold text-base md:text-lg">4.</span>
+                        <span>ستظهر لك معلومات لجنتك الانتخابية الصحيحة</span>
+                      </li>
+                    </ul>
+                  </div>
 
                   {/* صوتك أمانة */}
-                  <div className="p-6 bg-gradient-to-br from-gold-50 to-yellow-50 border-r-4 border-gold-500 rounded-lg shadow-lg">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <div className="p-4 md:p-6 bg-gradient-to-br from-gold-50 to-yellow-50 border-r-4 border-gold-500 rounded-lg shadow-lg">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                       🐋 صوتك أمانة
                     </h3>
-                    <p className="text-gray-700 leading-relaxed mb-3 text-lg">
-                      بعد معرفة لجنتك، لا تنسى أن تشارك في الانتخابات وتمنح صوتك لـ
+                    <p className="text-gray-700 leading-relaxed mb-3 text-base md:text-lg">
+                      بعد معرفة لجنتك من الموقع الرسمي، لا تنسى أن تشارك في الانتخابات وتمنح صوتك لـ
                     </p>
-                    <p className="text-2xl font-black text-primary-900 mb-2">
+                    <p className="text-xl md:text-2xl font-black text-primary-900 mb-3">
                       محمد إبراهيم علي الناغي
                     </p>
-                    <div className="flex items-center justify-center gap-4 p-4 bg-white rounded-lg">
-                      <span className="text-5xl">🐋</span>
+                    <div className="flex items-center justify-center gap-3 md:gap-4 p-3 md:p-4 bg-white rounded-lg">
+                      <span className="text-4xl md:text-5xl">🐋</span>
                       <div>
-                        <p className="text-sm text-gray-600">الرمز الانتخابي</p>
-                        <p className="text-4xl font-black text-gold-600">رقم 13</p>
-                        <p className="text-xl font-bold text-gray-800">الحوت</p>
+                        <p className="text-xs md:text-sm text-gray-600">الرمز الانتخابي</p>
+                        <p className="text-3xl md:text-4xl font-black text-gold-600">رقم 13</p>
+                        <p className="text-lg md:text-xl font-bold text-gray-800">الحوت</p>
                       </div>
                     </div>
                   </div>
 
                   {/* ما تحتاجه يوم الانتخابات */}
-                  <div className="p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">📋 ما تحتاجه يوم الانتخابات</h3>
-                    <ul className="space-y-3 text-gray-700">
-                      <li className="flex items-start gap-3 p-3 bg-white rounded-lg">
-                        <span className="text-gold-600 font-bold text-xl">✓</span>
-                        <span className="text-lg">البطاقة الشخصية أو جواز السفر (ساري)</span>
+                  <div className="p-4 md:p-6 bg-primary-50 rounded-lg border-2 border-primary-200">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4">📋 ما تحتاجه يوم الانتخابات</h3>
+                    <ul className="space-y-2 md:space-y-3 text-gray-700">
+                      <li className="flex items-start gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-lg text-sm md:text-base">
+                        <span className="text-gold-600 font-bold text-lg md:text-xl">✓</span>
+                        <span>البطاقة الشخصية أو جواز السفر (ساري)</span>
                       </li>
-                      <li className="flex items-start gap-3 p-3 bg-white rounded-lg">
-                        <span className="text-gold-600 font-bold text-xl">✓</span>
-                        <span className="text-lg">التوجه إلى مقر اللجنة المذكور أعلاه في الموعد المحدد</span>
+                      <li className="flex items-start gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-lg text-sm md:text-base">
+                        <span className="text-gold-600 font-bold text-lg md:text-xl">✓</span>
+                        <span>التوجه إلى مقر اللجنة المذكور في الموقع الرسمي</span>
                       </li>
-                      <li className="flex items-start gap-3 p-3 bg-white rounded-lg">
-                        <span className="text-gold-600 font-bold text-xl">✓</span>
-                        <span className="text-lg">اختيار الرمز الانتخابي: <strong className="text-primary-700">رقم 13 - الحوت 🐋</strong></span>
+                      <li className="flex items-start gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-lg text-sm md:text-base">
+                        <span className="text-gold-600 font-bold text-lg md:text-xl">✓</span>
+                        <span>اختيار الرمز الانتخابي: <strong className="text-primary-700">رقم 13 - الحوت 🐋</strong></span>
                       </li>
-                      <li className="flex items-start gap-3 p-3 bg-white rounded-lg">
-                        <span className="text-gold-600 font-bold text-xl">✓</span>
-                        <span className="text-lg">التأكد من ختم البطاقة الانتخابية بعد التصويت</span>
+                      <li className="flex items-start gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-lg text-sm md:text-base">
+                        <span className="text-gold-600 font-bold text-lg md:text-xl">✓</span>
+                        <span>التأكد من ختم البطاقة الانتخابية بعد التصويت</span>
                       </li>
                     </ul>
                   </div>
