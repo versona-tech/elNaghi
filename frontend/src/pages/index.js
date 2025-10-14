@@ -212,8 +212,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Presidential Patronage Section - بألوان العلم المصري */}
-      <section className="py-12 bg-gradient-to-r from-red-700 via-white to-black border-y-4 border-gold-500">
+      {/* Presidential Patronage Section - بألوان متناسقة مع الموقع */}
+      <section className="py-12 bg-gradient-to-r from-primary-800 via-primary-700 to-navy-800 border-y-4 border-gold-500">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -231,16 +231,16 @@ export default function Home() {
               />
             </div>
             <div className="text-center md:text-right">
-              <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <h3 className="text-3xl md:text-4xl font-black text-white mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
                 تحت رعاية الدولة المصرية
               </h3>
-              <p className="text-2xl md:text-3xl font-bold text-primary-800 mb-2">
+              <p className="text-2xl md:text-3xl font-bold text-gold-300 mb-2">
                 فخامة الرئيس عبد الفتاح السيسي
               </p>
-              <p className="text-lg md:text-xl text-gray-700">
+              <p className="text-lg md:text-xl text-gray-200">
                 رئيس جمهورية مصر العربية
               </p>
-              <div className="mt-4 inline-block px-6 py-2 bg-primary-800 text-white font-bold rounded-lg shadow-lg">
+              <div className="mt-4 inline-block px-6 py-2 bg-gold-500 text-white font-bold rounded-lg shadow-lg">
                 الانتخابات البرلمانية 2025
               </div>
             </div>
