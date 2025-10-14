@@ -224,7 +224,7 @@ export default function Home() {
           >
             <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gold-400 shadow-2xl flex-shrink-0">
               <Image 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Abdel_Fattah_el-Sisi_in_the_Leaders%27_Lounge%2C_New_York%2C_2014_%28cropped%29.jpg/800px-Abdel_Fattah_el-Sisi_in_the_Leaders%27_Lounge%2C_New_York%2C_2014_%28cropped%29.jpg"
+                src="https://upload.wikimedia.org/wikipedia/commons/7/77/AbdelFattah_Elsisi.jpg"
                 alt="فخامة الرئيس عبد الفتاح السيسي"
                 fill
                 className="object-cover"
