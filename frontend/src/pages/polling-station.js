@@ -78,22 +78,22 @@ const FindPollingStationPage = () => {
       </Head>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-800 via-primary-700 to-navy-800 text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-primary-800 via-primary-700 to-navy-800 text-white py-12 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cyber-grid" />
         <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-4xl mx-auto px-4"
           >
-            <h1 className="text-5xl md:text-6xl font-black mb-6" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6" style={{ fontFamily: 'Cairo, sans-serif' }}>
               اعرف لجنتك الانتخابية
             </h1>
-            <p className="text-2xl text-primary-100 mb-4">
+            <p className="text-lg md:text-2xl text-primary-100 mb-3 md:mb-4">
               اكتشف مقر التصويت الخاص بك بسهولة
             </p>
-            <p className="text-xl text-gray-200">
+            <p className="text-base md:text-xl text-gray-200">
               أدخل الرقم القومي واكتشف مكان لجنتك الانتخابية
             </p>
           </motion.div>
@@ -101,20 +101,20 @@ const FindPollingStationPage = () => {
       </section>
 
       {/* Presidential Patronage */}
-      <section className="py-8 bg-gradient-to-r from-green-700 via-green-800 to-green-900 border-y-4 border-gold-500">
-        <div className="container-custom text-center">
-          <p className="text-2xl md:text-3xl font-bold text-gold-300">
+      <section className="py-6 md:py-8 bg-gradient-to-r from-green-700 via-green-800 to-green-900 border-y-4 border-gold-500">
+        <div className="container-custom text-center px-4">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gold-300">
             تحت رعاية فخامة الرئيس عبد الفتاح السيسي
           </p>
-          <p className="text-lg text-gray-200 mt-2">
+          <p className="text-base md:text-lg text-gray-200 mt-2">
             الانتخابات البرلمانية 2025
           </p>
         </div>
       </section>
 
       {/* Search Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container-custom">
+      <section className="py-8 md:py-16 bg-gray-50">
+        <div className="container-custom px-4">
           <div className="max-w-3xl mx-auto">
             
             {/* Search Form */}
@@ -122,21 +122,21 @@ const FindPollingStationPage = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mb-8"
+              className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 lg:p-12 mb-6 md:mb-8"
             >
-              <div className="text-center mb-8">
-                <FaSearch className="text-6xl text-primary-700 mx-auto mb-4" />
-                <h2 className="text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
+              <div className="text-center mb-6 md:mb-8">
+                <FaSearch className="text-4xl md:text-6xl text-primary-700 mx-auto mb-3 md:mb-4" />
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
                   ابحث عن لجنتك
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="text-gray-600 text-base md:text-lg">
                   أدخل الرقم القومي المكون من 14 رقم
                 </p>
               </div>
 
-              <form onSubmit={handleSearch} className="space-y-6">
+              <form onSubmit={handleSearch} className="space-y-4 md:space-y-6">
                 <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-3">
+                  <label className="block text-base md:text-lg font-bold text-gray-900 mb-2 md:mb-3">
                     الرقم القومي
                   </label>
                   <input
@@ -144,25 +144,25 @@ const FindPollingStationPage = () => {
                     value={nationalId}
                     onChange={(e) => setNationalId(e.target.value.replace(/\D/g, '').slice(0, 14))}
                     placeholder="أدخل الرقم القومي (14 رقم)"
-                    className="w-full px-6 py-4 text-2xl text-center border-4 border-primary-300 rounded-xl focus:border-primary-600 focus:ring-4 focus:ring-primary-200 transition-all"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 text-xl md:text-2xl text-center border-4 border-primary-300 rounded-xl focus:border-primary-600 focus:ring-4 focus:ring-primary-200 transition-all"
                     maxLength="14"
                     dir="ltr"
                   />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
+                  <p className="text-xs md:text-sm text-gray-500 mt-2 text-center">
                     مثال: 29001011234567
                   </p>
                 </div>
 
                 {error && (
-                  <div className="bg-red-50 border-r-4 border-red-500 p-4 rounded-lg">
-                    <p className="text-red-700 font-semibold">{error}</p>
+                  <div className="bg-red-50 border-r-4 border-red-500 p-3 md:p-4 rounded-lg">
+                    <p className="text-red-700 font-semibold text-sm md:text-base">{error}</p>
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-5 bg-gradient-to-r from-primary-700 to-primary-900 text-white text-xl font-bold rounded-xl hover:from-primary-800 hover:to-primary-950 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  className="w-full py-4 md:py-5 bg-gradient-to-r from-primary-700 to-primary-900 text-white text-lg md:text-xl font-bold rounded-xl hover:from-primary-800 hover:to-primary-950 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                 >
                   {loading ? (
                     <>
@@ -185,39 +185,39 @@ const FindPollingStationPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white rounded-2xl shadow-2xl p-8 md:p-12"
+                className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 lg:p-12"
               >
-                <div className="text-center mb-8">
-                  <div className="inline-block p-6 bg-green-100 rounded-full mb-4">
-                    <FaMapMarkerAlt className="text-5xl text-green-600" />
+                <div className="text-center mb-6 md:mb-8">
+                  <div className="inline-block p-4 md:p-6 bg-green-100 rounded-full mb-3 md:mb-4">
+                    <FaMapMarkerAlt className="text-3xl md:text-5xl text-green-600" />
                   </div>
-                  <h2 className="text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                  <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Cairo, sans-serif' }}>
                     تم العثور على لجنتك الانتخابية! 
                   </h2>
-                  <p className="text-lg text-gray-600">
+                  <p className="text-sm md:text-lg text-gray-600">
                     الرقم القومي: <span className="font-bold text-primary-700" dir="ltr">{result.nationalId}</span>
                   </p>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   {/* معلومات اللجنة */}
-                  <div className="p-6 bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl border-2 border-primary-200">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <div className="p-4 md:p-6 bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl border-2 border-primary-200">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center gap-2">
                       <FaMapMarkerAlt className="text-primary-600" />
                       معلومات اللجنة الانتخابية
                     </h3>
-                    <div className="space-y-4">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0">اسم اللجنة:</span>
-                        <span className="text-gray-900 font-bold text-lg">{result.pollingStation}</span>
+                    <div className="space-y-3 md:space-y-4">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
+                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">اسم اللجنة:</span>
+                        <span className="text-gray-900 font-bold text-base md:text-lg">{result.pollingStation}</span>
                       </div>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0">العنوان الكامل:</span>
-                        <span className="text-gray-900 font-bold text-right">{result.address}</span>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
+                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">العنوان الكامل:</span>
+                        <span className="text-gray-900 font-bold text-right text-sm md:text-base">{result.address}</span>
                       </div>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-3 border-b border-gray-300">
-                        <span className="text-gray-600 font-semibold mb-1 md:mb-0">المحافظة:</span>
-                        <span className="text-gray-900 font-bold">{result.governorate}</span>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center py-2 md:py-3 border-b border-gray-300">
+                        <span className="text-gray-600 font-semibold mb-1 md:mb-0 text-sm md:text-base">المحافظة:</span>
+                        <span className="text-gray-900 font-bold text-sm md:text-base">{result.governorate}</span>
                       </div>
                       <div className="grid grid-cols-2 gap-4 pt-2">
                         <div className="text-center p-4 bg-white rounded-lg shadow">
