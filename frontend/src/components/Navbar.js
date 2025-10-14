@@ -180,45 +180,6 @@ const Navbar = () => {
               </motion.div>
             </Link>
 
-            {/* Election Symbol - Whale Badge with Number 13 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-              className="hidden md:flex items-center gap-3 px-5 py-2.5 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 rounded-xl border-2 border-gold-500 shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              <motion.div
-                animate={{ 
-                  y: [0, -5, 0],
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative w-10 h-10 md:w-11 md:h-11"
-              >
-                <Image 
-                  src="/images/whale.png" 
-                  alt="رمز الحوت"
-                  fill
-                  className="object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
-                  style={{ filter: 'drop-shadow(0 0 8px rgba(217, 119, 6, 0.3))' }}
-                />
-              </motion.div>
-              <div className="flex flex-col">
-                <span className="text-[10px] md:text-xs font-bold text-gold-400 uppercase tracking-wide">الرمز الانتخابي</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl md:text-3xl font-black text-gold-400" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                    13
-                  </span>
-                  <span className="text-sm md:text-base font-black text-white" style={{ fontFamily: 'Cairo, sans-serif' }}>
-                    🐋 الحوت
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Desktop Menu - Professional Style */}
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
