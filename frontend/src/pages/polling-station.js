@@ -205,7 +205,7 @@ const FindPollingStationPage = () => {
                       </li>
                       <li className="flex items-start gap-2 md:gap-3">
                         <span className="text-yellow-600 font-bold text-base md:text-lg">3.</span>
-                        <span>اضغط على زر "بحث" أو "استعلام"</span>
+                        <span>اضغط على زر &ldquo;بحث&rdquo; أو &ldquo;استعلام&rdquo;</span>
                       </li>
                       <li className="flex items-start gap-2 md:gap-3">
                         <span className="text-yellow-600 font-bold text-base md:text-lg">4.</span>
