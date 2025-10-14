@@ -11,7 +11,6 @@ const Navbar = () => {
     { name: 'الرئيسية', href: '/' },
     { name: 'السيرة الذاتية', href: '/biography' },
     { name: 'البرنامج الانتخابي', href: '/program' },
-    { name: 'اعرف لجنتك', href: '/polling-station' },
     { name: 'الأخبار', href: '/news' },
     { name: 'الفعاليات', href: '/events' },
     { name: 'الخدمات', href: '/services' },
