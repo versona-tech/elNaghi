@@ -26,11 +26,11 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', color: 'from-blue-600 to-blue-700' },
-    { icon: FaTwitter, href: '#', color: 'from-sky-500 to-sky-600' },
-    { icon: FaYoutube, href: '#', color: 'from-red-600 to-red-700' },
-    { icon: FaWhatsapp, href: '#', color: 'from-green-600 to-green-700' },
-    { icon: FaInstagram, href: '#', color: 'from-pink-600 to-purple-600' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/', color: 'from-blue-600 to-blue-700' },
+    { icon: FaTwitter, href: 'https://twitter.com/', color: 'from-sky-500 to-sky-600' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/', color: 'from-red-600 to-red-700' },
+    { icon: FaWhatsapp, href: 'https://wa.me/20', color: 'from-green-600 to-green-700' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/', color: 'from-pink-600 to-purple-600' },
   ];
 
   return (

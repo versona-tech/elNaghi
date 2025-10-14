@@ -46,7 +46,9 @@ const Navbar = () => {
             className="flex items-center gap-3"
           >
             <motion.a 
-              href="#" 
+              href="https://www.facebook.com/" 
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="hover:text-gold-400 transition-colors"
@@ -54,7 +56,9 @@ const Navbar = () => {
               <FaFacebook size={16} />
             </motion.a>
             <motion.a 
-              href="#" 
+              href="https://twitter.com/" 
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="hover:text-gold-400 transition-colors"
@@ -62,7 +66,9 @@ const Navbar = () => {
               <FaTwitter size={16} />
             </motion.a>
             <motion.a 
-              href="#" 
+              href="https://www.youtube.com/" 
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="hover:text-gold-400 transition-colors"
@@ -70,7 +76,9 @@ const Navbar = () => {
               <FaYoutube size={16} />
             </motion.a>
             <motion.a 
-              href="#" 
+              href="https://wa.me/20" 
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="hover:text-gold-400 transition-colors"

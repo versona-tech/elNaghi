@@ -9,9 +9,9 @@ const ServicesPage = () => {
       icon: <FaIdCard />,
       description: 'استخراج وتجديد البطاقة الشخصية',
       links: [
-        { name: 'استعلام عن البطاقة', url: '#' },
-        { name: 'حجز موعد', url: '#' },
-        { name: 'الأوراق المطلوبة', url: '#' },
+        { name: 'استعلام عن البطاقة', url: 'https://www.moi.gov.eg/' },
+        { name: 'حجز موعد', url: 'https://www.moi.gov.eg/' },
+        { name: 'الأوراق المطلوبة', url: 'https://www.moi.gov.eg/' },
       ]
     },
     {
@@ -19,9 +19,9 @@ const ServicesPage = () => {
       icon: <FaBolt />,
       description: 'استعلامات وشكاوى الكهرباء',
       links: [
-        { name: 'استعلام عن الفاتورة', url: 'https://portal.eea.com.eg' },
-        { name: 'تقديم شكوى', url: '#' },
-        { name: 'طلب توصيل كهرباء', url: '#' },
+        { name: 'استعلام عن الفاتورة', url: 'https://portal.eea.com.eg/' },
+        { name: 'تقديم شكوى', url: 'https://portal.eea.com.eg/' },
+        { name: 'طلب توصيل كهرباء', url: 'https://portal.eea.com.eg/' },
       ]
     },
     {
@@ -29,9 +29,9 @@ const ServicesPage = () => {
       icon: <FaFileAlt />,
       description: 'البطاقة التموينية والخدمات',
       links: [
-        { name: 'استعلام عن البطاقة', url: 'https://www.moss.gov.eg' },
-        { name: 'إضافة مواليد', url: '#' },
-        { name: 'تحديث البيانات', url: '#' },
+        { name: 'استعلام عن البطاقة', url: 'https://www.moss.gov.eg/' },
+        { name: 'إضافة مواليد', url: 'https://www.moss.gov.eg/' },
+        { name: 'تحديث البيانات', url: 'https://www.moss.gov.eg/' },
       ]
     },
     {
@@ -39,9 +39,9 @@ const ServicesPage = () => {
       icon: <FaBuilding />,
       description: 'الاستعلامات العقارية',
       links: [
-        { name: 'الاستعلام العقاري', url: '#' },
-        { name: 'تسجيل عقد', url: '#' },
-        { name: 'شهادة ملكية', url: '#' },
+        { name: 'الاستعلام العقاري', url: 'https://www.rea.gov.eg/' },
+        { name: 'تسجيل عقد', url: 'https://www.rea.gov.eg/' },
+        { name: 'شهادة ملكية', url: 'https://www.rea.gov.eg/' },
       ]
     },
     {
@@ -49,9 +49,9 @@ const ServicesPage = () => {
       icon: <FaWater />,
       description: 'خدمات مياه الشرب والصرف',
       links: [
-        { name: 'استعلام عن الفاتورة', url: '#' },
-        { name: 'تقديم شكوى', url: '#' },
-        { name: 'طلب توصيل مياه', url: '#' },
+        { name: 'استعلام عن الفاتورة', url: 'https://www.hcww.com.eg/' },
+        { name: 'تقديم شكوى', url: 'https://www.hcww.com.eg/' },
+        { name: 'طلب توصيل مياه', url: 'https://www.hcww.com.eg/' },
       ]
     },
     {
@@ -59,9 +59,9 @@ const ServicesPage = () => {
       icon: <FaGraduationCap />,
       description: 'الخدمات التعليمية',
       links: [
-        { name: 'نتائج الامتحانات', url: '#' },
-        { name: 'التقديم للمدارس', url: '#' },
-        { name: 'المنح الدراسية', url: '#' },
+        { name: 'نتائج الامتحانات', url: 'https://moe.gov.eg/' },
+        { name: 'التقديم للمدارس', url: 'https://moe.gov.eg/' },
+        { name: 'المنح الدراسية', url: 'https://moe.gov.eg/' },
       ]
     },
     {
@@ -69,9 +69,9 @@ const ServicesPage = () => {
       icon: <FaHospital />,
       description: 'التأمين الصحي والخدمات',
       links: [
-        { name: 'التأمين الصحي الشامل', url: 'https://www.uhia.gov.eg' },
-        { name: 'حجز موعد بالمستشفى', url: '#' },
-        { name: 'الوحدات الصحية', url: '#' },
+        { name: 'التأمين الصحي الشامل', url: 'https://www.uhia.gov.eg/' },
+        { name: 'حجز موعد بالمستشفى', url: 'https://www.mohp.gov.eg/' },
+        { name: 'الوحدات الصحية', url: 'https://www.mohp.gov.eg/' },
       ]
     },
     {
@@ -79,9 +79,9 @@ const ServicesPage = () => {
       icon: <FaMoneyBill />,
       description: 'الخدمات الضريبية',
       links: [
-        { name: 'التسجيل الضريبي', url: 'https://www.eta.gov.eg' },
-        { name: 'الإقرار الضريبي', url: '#' },
-        { name: 'استعلامات ضريبية', url: '#' },
+        { name: 'التسجيل الضريبي', url: 'https://www.eta.gov.eg/' },
+        { name: 'الإقرار الضريبي', url: 'https://www.eta.gov.eg/' },
+        { name: 'استعلامات ضريبية', url: 'https://www.eta.gov.eg/' },
       ]
     },
   ];
