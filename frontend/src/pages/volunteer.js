@@ -251,7 +251,7 @@ const VolunteerPage = () => {
 
     try {
       // إرسال البيانات لـ Google Apps Script
-      const response = await fetch('https://script.google.com/macros/s/AKfycbz--FGlpKpOffiedZdz2Hl4HQk1sHI0gWSdArzpQXFn3ExlOhsDF3-NYs5G6RX-vKk/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzuej3NgOUo0HP-Z1q4dHiZyhSnnBZMb141xlfyxlwMsjIMmJmB_AduNPmoPSGA84A/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
