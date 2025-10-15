@@ -1,5 +1,9 @@
 const { google } = require('googleapis');
 
+// Netlify Serverless Function للتعامل مع Google Sheets API
+// تم التحديث: 15 أكتوبر 2025
+// يحفظ بيانات المتطوعين مباشرة في Google Sheets مع ترجمة عربية
+
 // ترجمة اللجان الرئيسية
 const committeeNames = {
   technical: 'اللجنة التقنية',
