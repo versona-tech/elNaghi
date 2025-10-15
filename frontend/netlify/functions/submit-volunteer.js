@@ -152,23 +152,44 @@ exports.handler = async (event, context) => {
 
     // Validate required environment variables
     const CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
-    const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+    let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
     const SHEET_ID = process.env.GOOGLE_SHEET_ID;
 
     if (!CLIENT_EMAIL || !PRIVATE_KEY || !SHEET_ID) {
+      console.error('Missing env vars:', {
+        hasEmail: !!CLIENT_EMAIL,
+        hasKey: !!PRIVATE_KEY,
+        hasSheetId: !!SHEET_ID
+      });
       throw new Error('Missing required environment variables');
     }
 
-    // Initialize Google Sheets API with JWT and authorize
-    const auth = new google.auth.JWT(
-      CLIENT_EMAIL,
-      null,
-      PRIVATE_KEY,
-      ['https://www.googleapis.com/auth/spreadsheets']
-    );
+    // Fix the private key formatting
+    if (PRIVATE_KEY.includes('\\n')) {
+      PRIVATE_KEY = PRIVATE_KEY.replace(/\\n/g, '\n');
+    }
+    
+    // Remove quotes if present
+    if (PRIVATE_KEY.startsWith('"') && PRIVATE_KEY.endsWith('"')) {
+      PRIVATE_KEY = PRIVATE_KEY.slice(1, -1);
+    }
 
-    // Get access token
+    console.log('Initializing Google Sheets API...');
+    console.log('Client Email:', CLIENT_EMAIL);
+    console.log('Sheet ID:', SHEET_ID);
+    console.log('Private Key starts with:', PRIVATE_KEY.substring(0, 30));
+
+    // Initialize Google Sheets API with JWT
+    const auth = new google.auth.JWT({
+      email: CLIENT_EMAIL,
+      key: PRIVATE_KEY,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    // Authorize and get access token
+    console.log('Authorizing...');
     await auth.authorize();
+    console.log('Authorization successful!');
 
     const sheets = google.sheets({ version: 'v4', auth });
 
