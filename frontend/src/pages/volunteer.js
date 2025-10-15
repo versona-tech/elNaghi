@@ -8,7 +8,6 @@ import {
   FaMoneyBillWave, FaPhoneAlt, FaShieldAlt, FaBalanceScale, FaLightbulb,
   FaHandshake, FaUserGraduate, FaMapMarkedAlt, FaCheckCircle, FaPaperPlane
 } from 'react-icons/fa';
-import googleSheetsService from '@/lib/googleSheets';
 
 const VolunteerPage = () => {
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
@@ -251,12 +250,20 @@ const VolunteerPage = () => {
     setSuccessData(null);
 
     try {
-      // إرسال البيانات مباشرة لـ Google Sheets
-      const result = await googleSheetsService.addVolunteer(data);
+      // إرسال البيانات للـ Netlify Function
+      const response = await fetch('/.netlify/functions/submit-volunteer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
       
       if (result.success) {
         setSuccess(true);
-        setSuccessData(result);
+        setSuccessData(result.data);
         reset();
         setSelectedCommittee('');
         
@@ -265,10 +272,12 @@ const VolunteerPage = () => {
           setSuccess(false);
           setSuccessData(null);
         }, 8000);
+      } else {
+        throw new Error(result.error || 'حدث خطأ أثناء إرسال الطلب');
       }
     } catch (err) {
       console.error('Error submitting volunteer:', err);
-      const errorMessage = 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
+      const errorMessage = err.message || 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
       setError(errorMessage);
     } finally {
       setLoading(false);
