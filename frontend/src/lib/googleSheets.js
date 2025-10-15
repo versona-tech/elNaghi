@@ -1,7 +1,8 @@
 import { google } from 'googleapis';
-import credentials from '../config/google-credentials.json';
 
-const SHEET_ID = '1DnFeLt2Btqwo_SpFPKe_sM4ZYP8bM5i-DNnGA5N_ihA';
+const SHEET_ID = process.env.GOOGLE_SHEET_ID || '1DnFeLt2Btqwo_SpFPKe_sM4ZYP8bM5i-DNnGA5N_ihA';
+const CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
+const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
 // ترجمة اللجان الرئيسية
 const committeeNames = {
@@ -53,11 +54,16 @@ class GoogleSheetsService {
     if (this.initialized) return;
 
     try {
+      // التحقق من وجود المتغيرات المطلوبة
+      if (!CLIENT_EMAIL || !PRIVATE_KEY) {
+        throw new Error('Missing Google Sheets credentials. Please check your .env.local file.');
+      }
+
       // إنشاء JWT client للمصادقة
       this.auth = new google.auth.JWT(
-        credentials.client_email,
+        CLIENT_EMAIL,
         null,
-        credentials.private_key,
+        PRIVATE_KEY,
         ['https://www.googleapis.com/auth/spreadsheets']
       );
 
