@@ -27,9 +27,16 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
 
     // إعداد Service Account من متغيرات البيئة
+    let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+    
+    // إصلاح تنسيق الـ Private Key
+    if (privateKey && !privateKey.includes('\n')) {
+      privateKey = privateKey.replace(/\\n/g, '\n');
+    }
+    
     const serviceAccountAuth = new JWT({
       email: process.env.GOOGLE_CLIENT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      key: privateKey,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
@@ -116,13 +123,21 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Error:', error);
+    console.error('❌ Error details:', {
+      message: error.message,
+      stack: error.stack,
+      hasEmail: !!process.env.GOOGLE_CLIENT_EMAIL,
+      hasKey: !!process.env.GOOGLE_PRIVATE_KEY,
+      hasSheetId: !!process.env.GOOGLE_SHEET_ID
+    });
+    
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         success: false,
-        error: error.message
+        error: error.message,
+        details: 'تحقق من Function Logs في Netlify'
       })
     };
   }
