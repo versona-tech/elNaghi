@@ -8,7 +8,7 @@ import {
   FaMoneyBillWave, FaPhoneAlt, FaShieldAlt, FaBalanceScale, FaLightbulb,
   FaHandshake, FaUserGraduate, FaMapMarkedAlt, FaCheckCircle, FaPaperPlane
 } from 'react-icons/fa';
-import { volunteersAPI } from '@/lib/api';
+import googleSheetsService from '@/lib/googleSheets';
 
 const VolunteerPage = () => {
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
@@ -251,12 +251,12 @@ const VolunteerPage = () => {
     setSuccessData(null);
 
     try {
-      // إرسال البيانات للـ API
-      const response = await volunteersAPI.submit(data);
+      // إرسال البيانات مباشرة لـ Google Sheets
+      const result = await googleSheetsService.addVolunteer(data);
       
-      if (response.data.success) {
+      if (result.success) {
         setSuccess(true);
-        setSuccessData(response.data.data);
+        setSuccessData(result);
         reset();
         setSelectedCommittee('');
         
@@ -268,14 +268,8 @@ const VolunteerPage = () => {
       }
     } catch (err) {
       console.error('Error submitting volunteer:', err);
-      const errorMessage = err.response?.data?.message || 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
+      const errorMessage = 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
       setError(errorMessage);
-      
-      // Show validation errors if any
-      if (err.response?.data?.errors) {
-        const validationErrors = err.response.data.errors.map(e => e.message).join(', ');
-        setError(errorMessage + ': ' + validationErrors);
-      }
     } finally {
       setLoading(false);
     }
