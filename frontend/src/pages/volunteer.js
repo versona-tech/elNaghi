@@ -250,17 +250,16 @@ const VolunteerPage = () => {
     setSuccessData(null);
 
     try {
-      // إرسال البيانات لـ Google Apps Script
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzuej3NgOUo0HP-Z1q4dHiZyhSnnBZMb141xlfyxlwMsjIMmJmB_AduNPmoPSGA84A/exec', {
+      // إرسال البيانات للـ Netlify Function
+      const response = await fetch('/.netlify/functions/submit-volunteer', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
 
-      const result = { success: true, data: { volunteerNumber: Date.now(), name: data.fullName } };
+      const result = await response.json();
       
       if (result.success) {
         setSuccess(true);

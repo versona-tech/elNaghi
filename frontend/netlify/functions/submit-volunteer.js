@@ -1,251 +1,107 @@
-const { google } = require('googleapis');
-
-// ترجمة اللجان الرئيسية
-const committeeNames = {
-  technical: 'اللجنة التقنية',
-  administrative: 'اللجنة الإدارية',
-  advisory: 'اللجنة الاستشارية'
-};
-
-// ترجمة اللجان الفرعية
-const subCommitteeNames = {
-  // Technical
-  webDev: 'تطوير المواقع والتطبيقات',
-  socialMedia: 'إدارة السوشيال ميديا',
-  design: 'التصميم والجرافيكس',
-  video: 'المونتاج وإنتاج الفيديو',
-  dataAnalysis: 'تحليل البيانات',
-  
-  // Administrative
-  fieldCoordination: 'تنسيق العمل الميداني',
-  volunteersManagement: 'إدارة المتطوعين',
-  events: 'تنظيم الفعاليات',
-  publicRelations: 'العلاقات العامة',
-  logistics: 'اللوجستيات والإمدادات',
-  
-  // Advisory
-  legal: 'الدعم القانوني',
-  financial: 'التخطيط المالي',
-  strategic: 'التخطيط الاستراتيجي',
-  media: 'الاستشارات الإعلامية',
-  research: 'البحث والدراسات'
-};
-
-// ترجمة الوقت المتاح
-const availabilityNames = {
-  fullTime: 'متفرغ بالكامل',
-  partTime: 'جزء من الوقت (مساءً أو نهاية الأسبوع)',
-  weekends: 'نهاية الأسبوع فقط',
-  flexible: 'حسب الظروف'
-};
-
-async function initializeHeaders(sheets, spreadsheetId) {
-  try {
-    // التحقق من وجود headers
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: 'Sheet1!A1:O1',
-    });
-
-    // إذا لم تكن الـ headers موجودة، نضيفها
-    if (!response.data.values || response.data.values.length === 0) {
-      const headers = [
-        'رقم',
-        'التاريخ',
-        'الوقت',
-        'الاسم',
-        'الهاتف',
-        'البريد الإلكتروني',
-        'العمر',
-        'المنطقة',
-        'المؤهل الدراسي',
-        'اللجنة الرئيسية',
-        'اللجنة الفرعية',
-        'خبرة سابقة',
-        'المهارات',
-        'الوقت المتاح',
-        'دوافع الانضمام'
-      ];
-
-      await sheets.spreadsheets.values.update({
-        spreadsheetId,
-        range: 'Sheet1!A1:O1',
-        valueInputOption: 'RAW',
-        resource: {
-          values: [headers],
-        },
-      });
-
-      // تنسيق الـ headers
-      await sheets.spreadsheets.batchUpdate({
-        spreadsheetId,
-        resource: {
-          requests: [
-            {
-              repeatCell: {
-                range: {
-                  sheetId: 0,
-                  startRowIndex: 0,
-                  endRowIndex: 1,
-                },
-                cell: {
-                  userEnteredFormat: {
-                    backgroundColor: {
-                      red: 0.2,
-                      green: 0.4,
-                      blue: 0.8,
-                    },
-                    textFormat: {
-                      foregroundColor: {
-                        red: 1.0,
-                        green: 1.0,
-                        blue: 1.0,
-                      },
-                      fontSize: 11,
-                      bold: true,
-                    },
-                    horizontalAlignment: 'CENTER',
-                    verticalAlignment: 'MIDDLE',
-                  },
-                },
-                fields: 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment,verticalAlignment)',
-              },
-            },
-          ],
-        },
-      });
-
-      console.log('✅ Headers initialized successfully');
-    }
-  } catch (error) {
-    console.error('❌ Error initializing headers:', error);
-    throw error;
-  }
-}
+const { GoogleSpreadsheet } = require('google-spreadsheet');
+const { JWT } = require('google-auth-library');
 
 exports.handler = async (event, context) => {
-  // Allow CORS
+  // السماح بـ CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   };
 
-  // Handle preflight
+  // معالجة OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
 
-  // Only allow POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method not allowed' }),
+      body: JSON.stringify({ success: false, error: 'Method not allowed' })
     };
   }
 
   try {
-    // Parse request body
     const data = JSON.parse(event.body);
 
-    // Validate required environment variables
-    const CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
-    let PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
-    const SHEET_ID = process.env.GOOGLE_SHEET_ID;
-
-    if (!CLIENT_EMAIL || !PRIVATE_KEY || !SHEET_ID) {
-      console.error('Missing env vars:', {
-        hasEmail: !!CLIENT_EMAIL,
-        hasKey: !!PRIVATE_KEY,
-        hasSheetId: !!SHEET_ID
-      });
-      throw new Error('Missing required environment variables');
-    }
-
-    // Fix the private key formatting
-    if (PRIVATE_KEY.includes('\\n')) {
-      PRIVATE_KEY = PRIVATE_KEY.replace(/\\n/g, '\n');
-    }
-    
-    // Remove quotes if present
-    if (PRIVATE_KEY.startsWith('"') && PRIVATE_KEY.endsWith('"')) {
-      PRIVATE_KEY = PRIVATE_KEY.slice(1, -1);
-    }
-
-    console.log('Initializing Google Sheets API...');
-    console.log('Client Email:', CLIENT_EMAIL);
-    console.log('Sheet ID:', SHEET_ID);
-    console.log('Private Key starts with:', PRIVATE_KEY.substring(0, 30));
-
-    // Initialize Google Sheets API with JWT
-    const auth = new google.auth.JWT({
-      email: CLIENT_EMAIL,
-      key: PRIVATE_KEY,
+    // إعداد Service Account من متغيرات البيئة
+    const serviceAccountAuth = new JWT({
+      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
-    // Authorize and get access token
-    console.log('Authorizing...');
-    await auth.authorize();
-    console.log('Authorization successful!');
+    // الاتصال بالـ Google Sheet
+    const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
+    await doc.loadInfo();
+    
+    const sheet = doc.sheetsByIndex[0];
 
-    const sheets = google.sheets({ version: 'v4', auth });
-
-    // Initialize headers if needed
-    const sheetData = await sheets.spreadsheets.values.get({
-      spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A1:O1',
-    });
-
-    if (!sheetData.data.values || sheetData.data.values.length === 0) {
-      await initializeHeaders(sheets, SHEET_ID);
+    // التحقق من وجود الهيدر
+    const rows = await sheet.getRows();
+    if (rows.length === 0) {
+      await sheet.setHeaderRow(['رقم', 'التاريخ', 'الوقت', 'الاسم', 'الهاتف', 'البريد', 'العمر', 'المنطقة', 'المؤهل', 'اللجنة الرئيسية', 'اللجنة الفرعية', 'خبرة', 'المهارات', 'الوقت المتاح', 'الدوافع']);
     }
 
-    // Get current row count to generate volunteer number
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:A',
-    });
-
-    const rows = response.data.values || [];
-    const volunteerNumber = rows.length; // Header is row 1, so first volunteer is 1
-
-    // Prepare data with Arabic translation
+    // إعداد البيانات
     const now = new Date();
-    const date = now.toLocaleDateString('ar-EG', { timeZone: 'Africa/Cairo' });
-    const time = now.toLocaleTimeString('ar-EG', { timeZone: 'Africa/Cairo' });
+    const cairoTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Cairo' }));
+    const date = cairoTime.toLocaleDateString('ar-EG');
+    const time = cairoTime.toLocaleTimeString('ar-EG');
+    const volunteerNumber = rows.length + 1;
 
-    const rowData = [
-      volunteerNumber,
-      date,
-      time,
-      data.fullName,
-      data.phone,
-      data.email || '',
-      data.age,
-      data.area,
-      data.education,
-      committeeNames[data.mainCommittee] || data.mainCommittee,
-      subCommitteeNames[data.subCommittee] || data.subCommittee,
-      data.previousExperience || 'لا',
-      data.skills || '',
-      availabilityNames[data.availability] || data.availability,
-      data.motivation || ''
-    ];
+    // ترجمة القيم للعربية
+    const committees = {
+      technical: 'اللجنة التقنية',
+      administrative: 'اللجنة الإدارية',
+      advisory: 'اللجنة الاستشارية'
+    };
 
-    // Add row to sheet
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SHEET_ID,
-      range: 'Sheet1!A:O',
-      valueInputOption: 'RAW',
-      resource: {
-        values: [rowData],
-      },
+    const subCommittees = {
+      webDev: 'تطوير المواقع والتطبيقات',
+      socialMedia: 'إدارة السوشيال ميديا',
+      design: 'التصميم والجرافيكس',
+      video: 'المونتاج وإنتاج الفيديو',
+      dataAnalysis: 'تحليل البيانات',
+      fieldCoordination: 'تنسيق العمل الميداني',
+      volunteersManagement: 'إدارة المتطوعين',
+      events: 'تنظيم الفعاليات',
+      publicRelations: 'العلاقات العامة',
+      logistics: 'اللوجستيات والإمدادات',
+      legal: 'الدعم القانوني',
+      financial: 'التخطيط المالي',
+      strategic: 'التخطيط الاستراتيجي',
+      media: 'الاستشارات الإعلامية',
+      research: 'البحث والدراسات'
+    };
+
+    const availability = {
+      fullTime: 'متفرغ بالكامل',
+      partTime: 'جزء من الوقت',
+      weekends: 'نهاية الأسبوع فقط',
+      flexible: 'حسب الظروف'
+    };
+
+    // إضافة الصف
+    await sheet.addRow({
+      'رقم': volunteerNumber,
+      'التاريخ': date,
+      'الوقت': time,
+      'الاسم': data.fullName,
+      'الهاتف': data.phone,
+      'البريد': data.email || '',
+      'العمر': data.age,
+      'المنطقة': data.area,
+      'المؤهل': data.education,
+      'اللجنة الرئيسية': committees[data.mainCommittee] || data.mainCommittee,
+      'اللجنة الفرعية': subCommittees[data.subCommittee] || data.subCommittee,
+      'خبرة': data.previousExperience || 'لا',
+      'المهارات': data.skills || '',
+      'الوقت المتاح': availability[data.availability] || data.availability,
+      'الدوافع': data.motivation || ''
     });
-
-    console.log(`✅ Volunteer #${volunteerNumber} added successfully`);
 
     return {
       statusCode: 200,
@@ -256,17 +112,18 @@ exports.handler = async (event, context) => {
           volunteerNumber,
           name: data.fullName
         }
-      }),
+      })
     };
+
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('Error:', error);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         success: false,
-        error: error.message || 'حدث خطأ أثناء إرسال الطلب'
-      }),
+        error: error.message
+      })
     };
   }
 };
