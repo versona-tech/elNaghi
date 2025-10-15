@@ -25,8 +25,17 @@ exports.handler = async (event, context) => {
 
     // إعداد Service Account
     let privateKey = process.env.GOOGLE_PRIVATE_KEY;
-    if (privateKey && !privateKey.includes('\n')) {
-      privateKey = privateKey.replace(/\\n/g, '\n');
+    
+    // إصلاح تنسيق الـ Private Key - إزالة المسافات الزيادة
+    if (privateKey) {
+      // إزالة المسافات بين BEGIN/END والـ key
+      privateKey = privateKey.trim();
+      // تحويل \n النصية لـ new lines حقيقية
+      if (!privateKey.includes('-----BEGIN PRIVATE KEY-----\n')) {
+        privateKey = privateKey.replace(/\\n/g, '\n');
+      }
+      // إزالة المسافات من كل سطر
+      privateKey = privateKey.split('\n').map(line => line.trim()).join('\n');
     }
     
     const auth = new google.auth.JWT({
