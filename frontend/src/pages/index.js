@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { 
   FaGraduationCap, FaHospital, FaBriefcase, FaRoad, 
   FaFutbol, FaChartLine, FaArrowLeft, FaCalendar,
-  FaNewspaper, FaHandHoldingHeart 
+  FaNewspaper, FaHandHoldingHeart, FaBullhorn, FaUsers, FaLaptop, FaHandsHelping
 } from 'react-icons/fa';
 import { newsAPI, eventsAPI, programAPI } from '@/lib/api';
 import { mockNews, mockEvents, mockProgram } from '@/lib/mockData';
@@ -478,15 +478,73 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-bold mb-6">لديك سؤال أو مقترح؟</h2>
-          <p className="text-xl mb-8 text-primary-100">
-            نحن هنا للاستماع إليك والعمل على حل مشاكلك
-          </p>
-          <Link href="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
-            تواصل معنا الآن
-          </Link>
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gold-500 text-primary-900 px-4 py-2 rounded-full inline-block font-bold mb-4">
+                🤝 انضم لنا الآن
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6" style={{ fontFamily: 'Cairo, sans-serif' }}>
+                كن جزءاً من التغيير
+              </h2>
+              <p className="text-xl text-primary-100 mb-6 leading-relaxed">
+                انضم لحملة محمد الناغي الانتخابية وساهم في بناء مستقبل أفضل لأبناء دائرتنا. نبحث عن شباب وفتيات طموحين في جميع المجالات.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/volunteer" className="bg-white text-primary-800 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-2xl inline-flex items-center gap-2">
+                  <FaHandHoldingHeart className="text-xl" />
+                  <span>سجل كمتطوع</span>
+                </Link>
+                <Link href="/contact" className="bg-primary-800 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-900 transition-all duration-300 border-2 border-white inline-flex items-center gap-2">
+                  <span>اسأل المرشح</span>
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="hidden md:block"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: <FaBullhorn />, title: 'الإعلام والتصميم', count: '50+' },
+                  { icon: <FaUsers />, title: 'التنظيم والإدارة', count: '30+' },
+                  { icon: <FaLaptop />, title: 'السوشيال ميديا', count: '40+' },
+                  { icon: <FaHandsHelping />, title: 'العمل الميداني', count: '100+' }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300"
+                  >
+                    <div className="text-4xl mb-3">{item.icon}</div>
+                    <div className="text-3xl font-black text-gold-400 mb-2">{item.count}</div>
+                    <div className="text-sm text-primary-100">{item.title}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>
