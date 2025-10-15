@@ -244,44 +244,8 @@ const VolunteerPage = () => {
   };
 
   const onSubmit = async (data) => {
-    setLoading(true);
-    setError('');
-    setSuccess(false);
-    setSuccessData(null);
-
-    try {
-      // إرسال البيانات للـ Netlify Function
-      const response = await fetch('/.netlify/functions/submit-volunteer', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        setSuccess(true);
-        setSuccessData(result.data);
-        reset();
-        setSelectedCommittee('');
-        
-        // إخفاء رسالة النجاح بعد 8 ثواني
-        setTimeout(() => {
-          setSuccess(false);
-          setSuccessData(null);
-        }, 8000);
-      } else {
-        throw new Error(result.error || 'حدث خطأ أثناء إرسال الطلب');
-      }
-    } catch (err) {
-      console.error('Error submitting volunteer:', err);
-      const errorMessage = err.message || 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
+    // تحويل المستخدم لـ Google Form
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSf8YHqV7ZentN1oSy_bgQirZHMs6LAjr9TjNQBVZ7W36KKzs5c8/viewform', '_blank');
   };
 
   return (
