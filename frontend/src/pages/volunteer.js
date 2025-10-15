@@ -244,8 +244,43 @@ const VolunteerPage = () => {
   };
 
   const onSubmit = async (data) => {
-    // تحويل المستخدم لـ Google Form
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSf8YHqV7ZentN1oSy_bgQirZHMs6LAjr9TjNQBVZ7W36KKzs5c8/viewform', '_blank');
+    setLoading(true);
+    setError('');
+    
+    try {
+      // إرسال للإيميل مباشرة عبر Formspree (مجاني)
+      const response = await fetch('https://formspree.io/f/xanyjorq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          الاسم: data.fullName,
+          الهاتف: data.phone,
+          البريد: data.email,
+          العمر: data.age,
+          المنطقة: data.area,
+          المؤهل: data.education,
+          اللجنة_الرئيسية: data.mainCommittee,
+          اللجنة_الفرعية: data.subCommittee,
+          الخبرة: data.previousExperience,
+          المهارات: data.skills,
+          الوقت_المتاح: data.availability,
+          الدوافع: data.motivation
+        })
+      });
+      
+      if (response.ok) {
+        setSuccess(true);
+        setSuccessData({ volunteerNumber: Date.now(), name: data.fullName });
+        reset();
+        setTimeout(() => setSuccess(false), 8000);
+      } else {
+        throw new Error('فشل الإرسال');
+      }
+    } catch (err) {
+      setError('حدث خطأ أثناء إرسال الطلب');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
