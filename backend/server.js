@@ -56,6 +56,7 @@ app.use('/api/events', require('./routes/events'));
 app.use('/api/program', require('./routes/program'));
 app.use('/api/media', require('./routes/media'));
 app.use('/api/facebook', require('./routes/facebook'));
+app.use('/api/volunteers', require('./routes/volunteers'));
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -8,11 +8,13 @@ import {
   FaMoneyBillWave, FaPhoneAlt, FaShieldAlt, FaBalanceScale, FaLightbulb,
   FaHandshake, FaUserGraduate, FaMapMarkedAlt, FaCheckCircle, FaPaperPlane
 } from 'react-icons/fa';
+import { volunteersAPI } from '@/lib/api';
 
 const VolunteerPage = () => {
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [successData, setSuccessData] = useState(null);
   const [error, setError] = useState('');
   const [selectedCommittee, setSelectedCommittee] = useState('');
   
@@ -246,22 +248,34 @@ const VolunteerPage = () => {
     setLoading(true);
     setError('');
     setSuccess(false);
+    setSuccessData(null);
 
     try {
-      // هنا يمكن إضافة API call لحفظ البيانات
-      console.log('Volunteer Data:', data);
+      // إرسال البيانات للـ API
+      const response = await volunteersAPI.submit(data);
       
-      // محاكاة API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setSuccess(true);
-      reset();
-      setSelectedCommittee('');
-      
-      // إخفاء رسالة النجاح بعد 5 ثواني
-      setTimeout(() => setSuccess(false), 5000);
+      if (response.data.success) {
+        setSuccess(true);
+        setSuccessData(response.data.data);
+        reset();
+        setSelectedCommittee('');
+        
+        // إخفاء رسالة النجاح بعد 8 ثواني
+        setTimeout(() => {
+          setSuccess(false);
+          setSuccessData(null);
+        }, 8000);
+      }
     } catch (err) {
-      setError('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى');
+      console.error('Error submitting volunteer:', err);
+      const errorMessage = err.response?.data?.message || 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
+      setError(errorMessage);
+      
+      // Show validation errors if any
+      if (err.response?.data?.errors) {
+        const validationErrors = err.response.data.errors.map(e => e.message).join(', ');
+        setError(errorMessage + ': ' + validationErrors);
+      }
     } finally {
       setLoading(false);
     }
@@ -470,7 +484,7 @@ const VolunteerPage = () => {
 
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
               {/* Success Message */}
-              {success && (
+              {success && successData && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -478,15 +492,20 @@ const VolunteerPage = () => {
                 >
                   <div className="flex items-start gap-4">
                     <FaCheckCircle className="text-4xl text-green-600 flex-shrink-0 mt-1" />
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-xl font-bold text-green-900 mb-2">
                         تم إرسال طلبك بنجاح! 🎉
                       </h3>
+                      <div className="bg-white rounded-lg p-4 mb-3">
+                        <p className="text-sm text-gray-600 mb-1">رقم التسجيل الخاص بك:</p>
+                        <p className="text-3xl font-black text-primary-700">#{successData.volunteerNumber}</p>
+                        <p className="text-sm text-gray-600 mt-2">الاسم: <span className="font-bold text-gray-900">{successData.name}</span></p>
+                      </div>
                       <p className="text-green-700 mb-2">
-                        شكراً لانضمامك لحملة محمد الناغي. سيتم مراجعة طلبك والتواصل معك خلال 48 ساعة.
+                        شكراً <strong>{successData.name}</strong> لانضمامك لحملة محمد الناغي. سيتم مراجعة طلبك والتواصل معك خلال 48 ساعة.
                       </p>
                       <p className="text-green-600 text-sm">
-                        تحقق من بريدك الإلكتروني أو هاتفك للحصول على تأكيد الانضمام.
+                        احتفظ برقم التسجيل للمتابعة. تحقق من هاتفك أو بريدك الإلكتروني للحصول على تأكيد الانضمام.
                       </p>
                     </div>
                   </div>

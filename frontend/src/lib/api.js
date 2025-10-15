@@ -89,4 +89,11 @@ export const facebookAPI = {
   getVideos: (params) => api.get('/api/facebook/videos', { params }),
 };
 
+// Volunteers API
+export const volunteersAPI = {
+  submit: (data) => api.post('/api/volunteers', data),
+  getAll: (params) => api.get('/api/volunteers', { params }),
+  getStats: () => api.get('/api/volunteers/stats'),
+};
+
 export default api;
