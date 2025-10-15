@@ -1,9 +1,5 @@
 const { google } = require('googleapis');
 
-// Netlify Serverless Function للتعامل مع Google Sheets API
-// تم التحديث: 15 أكتوبر 2025
-// يحفظ بيانات المتطوعين مباشرة في Google Sheets مع ترجمة عربية
-
 // ترجمة اللجان الرئيسية
 const committeeNames = {
   technical: 'اللجنة التقنية',
@@ -163,7 +159,7 @@ exports.handler = async (event, context) => {
       throw new Error('Missing required environment variables');
     }
 
-    // Initialize Google Sheets API
+    // Initialize Google Sheets API with JWT and authorize
     const auth = new google.auth.JWT(
       CLIENT_EMAIL,
       null,
@@ -171,10 +167,20 @@ exports.handler = async (event, context) => {
       ['https://www.googleapis.com/auth/spreadsheets']
     );
 
+    // Get access token
+    await auth.authorize();
+
     const sheets = google.sheets({ version: 'v4', auth });
 
     // Initialize headers if needed
-    await initializeHeaders(sheets, SHEET_ID);
+    const sheetData = await sheets.spreadsheets.values.get({
+      spreadsheetId: SHEET_ID,
+      range: 'Sheet1!A1:O1',
+    });
+
+    if (!sheetData.data.values || sheetData.data.values.length === 0) {
+      await initializeHeaders(sheets, SHEET_ID);
+    }
 
     // Get current row count to generate volunteer number
     const response = await sheets.spreadsheets.values.get({
