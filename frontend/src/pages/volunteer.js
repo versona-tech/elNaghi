@@ -246,38 +246,39 @@ const VolunteerPage = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     setError('');
-    
+    setSuccess(false);
+    setSuccessData(null);
+
     try {
-      // إرسال للإيميل مباشرة عبر Formspree (مجاني)
-      const response = await fetch('https://formspree.io/f/xanyjorq', {
+      // إرسال البيانات للباك اند على الاستضافة
+      const response = await fetch('https://lail-store.to2mor.net/api.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          الاسم: data.fullName,
-          الهاتف: data.phone,
-          البريد: data.email,
-          العمر: data.age,
-          المنطقة: data.area,
-          المؤهل: data.education,
-          اللجنة_الرئيسية: data.mainCommittee,
-          اللجنة_الفرعية: data.subCommittee,
-          الخبرة: data.previousExperience,
-          المهارات: data.skills,
-          الوقت_المتاح: data.availability,
-          الدوافع: data.motivation
-        })
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+
+      const result = await response.json();
       
-      if (response.ok) {
+      if (result.success) {
         setSuccess(true);
-        setSuccessData({ volunteerNumber: Date.now(), name: data.fullName });
+        setSuccessData(result.data);
         reset();
-        setTimeout(() => setSuccess(false), 8000);
+        setSelectedCommittee('');
+        
+        // إخفاء رسالة النجاح بعد 8 ثواني
+        setTimeout(() => {
+          setSuccess(false);
+          setSuccessData(null);
+        }, 8000);
       } else {
-        throw new Error('فشل الإرسال');
+        throw new Error(result.error || 'حدث خطأ أثناء إرسال الطلب');
       }
     } catch (err) {
-      setError('حدث خطأ أثناء إرسال الطلب');
+      console.error('Error submitting volunteer:', err);
+      const errorMessage = err.message || 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
